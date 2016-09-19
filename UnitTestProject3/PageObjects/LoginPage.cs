@@ -36,7 +36,7 @@ namespace PageObjects
             Login.Submit();
             Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
                     }
-        public void CreateNewAccount3shapeUser()
+        public void GoToCreateAccountUserPage()
         {
             NewAccount.Click();
             SoftwareUser.Click();

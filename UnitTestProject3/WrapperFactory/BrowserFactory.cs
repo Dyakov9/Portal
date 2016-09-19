@@ -19,7 +19,7 @@ namespace WrapperFactory
         {
             Driver.Url = url;
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10));
+            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(20));
         }
         public static WebDriverWait ExplicitlyWait()
         {

@@ -86,7 +86,7 @@ namespace PageObjects
         public void EnterLoginInfo()
         {
             Email.Clear();
-            Email.SendKeys("Testclinic4444444@3shapecommunicate.com");
+            Email.SendKeys("Testclinic44444444@3shapecommunicate.com");
             Name.Clear();
             Name.SendKeys("Testclinic444");
             Password.Clear();
@@ -118,7 +118,7 @@ namespace PageObjects
         {
             DongleNumber.Clear();
             DongleNumber.SendKeys("945390570");
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             NextButton3Step.Click();
         }
         public void ChooseRole()

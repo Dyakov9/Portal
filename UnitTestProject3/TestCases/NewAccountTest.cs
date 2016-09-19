@@ -7,14 +7,14 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-    public class NewAccount3shapeUserTest
+    public class NewAccount3ShapeUserTest
     {
         [TestMethod]
-        public void CreateNewAccount3shapeUser()
+        public void CreateNewAccount3ShapeUser()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.CreateNewAccount3shapeUser();
+            Page.Login.GoToCreateAccountUserPage();
             Page.CreateAccountUser.EnterLoginInfo();
             Page.CreateAccountUser.EnterAccountInfo();
             Page.CreateAccountUser.EnterDongleNumber();
