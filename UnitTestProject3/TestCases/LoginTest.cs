@@ -14,7 +14,7 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction();
+            Page.Login.LoginToAppliction("LogInTest");
             BrowserFactory.QuitBrowser();
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using TestDataAccess;
 
 namespace PageObjects
 {
@@ -27,12 +28,13 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SoftwareUser { get; set; }
 
-    public void LoginToAppliction ()
+    public void LoginToAppliction (string testName)
         {
+            var userData = ExcelDataAccess.GetTestData(testName);
             Email.Clear();
-            Email.SendKeys("Testclinic4@3shapecommunicate.com");
+            Email.SendKeys(userData.Email);
             Password.Clear();
-            Password.SendKeys("123456");
+            Password.SendKeys(userData.Password);
             Login.Submit();
             Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
                     }
