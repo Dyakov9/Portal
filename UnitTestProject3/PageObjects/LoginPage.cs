@@ -7,11 +7,11 @@ namespace PageObjects
    public class LoginPage
     {
        
-        [FindsBy(How = How.Id, Using = "ClinicName")]
+        [FindsBy(How = How.Name, Using = "Email")]
         [CacheLookup]
         private IWebElement Email { get; set; }
 
-        [FindsBy(How = How.Id, Using = "Address")]
+        [FindsBy(How = How.Name, Using = "Password")]
         [CacheLookup]
         private IWebElement Password { get; set; }
 

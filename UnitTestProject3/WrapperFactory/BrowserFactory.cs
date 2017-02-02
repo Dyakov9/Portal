@@ -10,6 +10,7 @@ namespace WrapperFactory
     {
         public static IWebDriver Driver { get; set; }
         public static WebDriverWait Wait { get; set; }
+       
         public static IWebDriver InitBrowser()
         {
             Driver = new ChromeDriver();
