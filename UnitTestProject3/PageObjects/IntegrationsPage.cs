@@ -10,5 +10,14 @@ namespace PageObjects
         [CacheLookup]
         public IWebElement IntegrateAccountsButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/li[1]/a")]
+        [CacheLookup]
+        public IWebElement CasesPageLink { get; set; }
+
+        public void GoToCasePage()
+        {
+            CasesPageLink.Click();
+        }
+
     }
 }

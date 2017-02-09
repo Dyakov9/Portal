@@ -1,5 +1,6 @@
 ﻿using WrapperFactory;
 using OpenQA.Selenium.Support.PageObjects;
+using UnitTestProject3.PageObjects;
 
 namespace PageObjects
 {
@@ -23,6 +24,10 @@ namespace PageObjects
         public static IntegrationsPage IntegrationsPage
         {
             get { return GetPage<IntegrationsPage>(); }
+        }
+        public static CasesPage CasesPage
+        {
+            get { return GetPage<CasesPage>(); }
         }
     }
 }
