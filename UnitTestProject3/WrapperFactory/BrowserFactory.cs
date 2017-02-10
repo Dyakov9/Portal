@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+using System.Runtime.Serialization;
 
 
 namespace WrapperFactory
@@ -21,10 +22,10 @@ namespace WrapperFactory
             Driver.Manage().Window.Maximize();
             Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(20));
         }
-        public static WebDriverWait ExplicitlyWait()
+        public static void ExplicitlyWait(IWebElement element )
         {
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
-            return Wait;
+            Wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(1));
+            Wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
 

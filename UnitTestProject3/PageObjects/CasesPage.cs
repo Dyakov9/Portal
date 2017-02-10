@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using PageObjects;
 using TestDataAccess;
+using WrapperFactory;
 
 namespace UnitTestProject3.PageObjects
 {
@@ -21,6 +22,7 @@ namespace UnitTestProject3.PageObjects
             var userData = ExcelDataAccess.GetTestData(testName);
             SearchField.Clear();
             SearchField.SendKeys(userData.CaseId);
+            BrowserFactory.ExplicitlyWait(SearchButton);
             SearchButton.Click();
             
         }
