@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
+using PageObjects;
 using System.Runtime.Serialization;
 
 
@@ -11,23 +12,28 @@ namespace WrapperFactory
     {
         public static IWebDriver Driver { get; set; }
         public static WebDriverWait Wait { get; set; }
-        public static IWebDriver InitBrowser()
+
+        public static void InitBrowser()
         {
             Driver = new ChromeDriver();
-            return Driver;
+            Wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(1));
         }
+
         public static void LoadApplication(string url)
         {
             Driver.Url = url;
             Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(20));
         }
-        public static void ExplicitlyWait(IWebElement element )
+
+        public static void WaitUntilElementToBeClickable(IWebElement element )
         {
-            Wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(1));
             Wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
+        public static void WaitUntilTextToBePresentInElement(IWebElement element, string text)
+        {
+            Wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+        }
 
         public static string GetUrl()
         {

@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TestDataAccess;
+using WrapperFactory;
 
 namespace PageObjects
 {
@@ -28,15 +29,16 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SoftwareUser { get; set; }
 
-    public void LoginToAppliction (string testName)
+    public void LoginToAppliction ()
         {
-            var userData = ExcelDataAccess.GetTestData(testName);
+            BrowserFactory.WaitUntilElementToBeClickable(Email);
+            var userData = ExcelDataAccess.GetTestData();
             Email.Clear();
             Email.SendKeys(userData.Email);
             Password.Clear();
             Password.SendKeys(userData.Password);
             Login.Submit();
-            Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
+            BrowserFactory.WaitUntilElementToBeClickable(Page.IntegrationsPage.IntegrateAccountsButton);
                     }
         public void GoToCreateAccountUserPage()
         {

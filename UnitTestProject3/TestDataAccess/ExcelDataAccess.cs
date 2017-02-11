@@ -14,10 +14,11 @@ namespace TestDataAccess
             return con;
         }
 
-        public static UserData GetTestData(string keyName)
+        public static UserData GetTestData()
         {
             using (var connection = new OleDbConnection(TestDataFileConnection()))
             {
+                var keyName = "test";
                 connection.Open();
                 var query = string.Format("select * from [DataSet$] where key='{0}'", keyName);
                 var value = connection.Query<UserData>(query).FirstOrDefault();

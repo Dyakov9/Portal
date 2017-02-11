@@ -9,11 +9,11 @@ namespace TestCases
     public class SearchTest
     {
      [TestMethod]
-         public static void Main()
+         public void Search()
          {
              BrowserFactory.InitBrowser();
              BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-             Page.Login.LoginToAppliction("Test");
+             Page.Login.LoginToAppliction();
              Page.IntegrationsPage.GoToCasePage();
              Page.CasesPage.Search("Test");
              BrowserFactory.QuitBrowser();
