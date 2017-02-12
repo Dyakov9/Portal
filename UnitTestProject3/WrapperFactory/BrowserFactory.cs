@@ -30,6 +30,11 @@ namespace WrapperFactory
             Wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
+        public static void WaitUntilElementIsInvisible(By locator)
+        {
+            Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
+        }
+
         public static void WaitUntilTextToBePresentInElement(IWebElement element, string text)
         {
             Wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));

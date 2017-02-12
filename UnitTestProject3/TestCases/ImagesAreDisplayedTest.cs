@@ -3,19 +3,20 @@ using PageObjects;
 using System.Configuration;
 using WrapperFactory;
 
-
-namespace TestCases
+namespace UnitTestProject3.TestCases
 {
     [TestClass]
-    public class LoginTest
+   public class ImagesAreDisplayedTest
     {
-       [TestMethod]
-        public void Login()
+        [TestMethod]
+    public void ImagesAreDisplayed ()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction();
-            BrowserFactory.QuitBrowser();
+            Page.IntegrationsPage.GoToCasePage();
+            Page.CasesPage.VerifyImagesAreDisplayed();
+            //BrowserFactory.QuitBrowser();
         }
     }
 }
