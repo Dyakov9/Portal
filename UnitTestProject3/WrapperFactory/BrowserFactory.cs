@@ -4,7 +4,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using PageObjects;
 using System.Runtime.Serialization;
-
+using OpenQA.Selenium.Interactions;
 
 namespace WrapperFactory
 {
@@ -12,11 +12,14 @@ namespace WrapperFactory
     {
         public static IWebDriver Driver { get; set; }
         public static WebDriverWait Wait { get; set; }
+        public static Actions builder { get; set; }
 
         public static void InitBrowser()
         {
             Driver = new ChromeDriver();
             Wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(1));
+            builder = new Actions (Driver);
+            
         }
 
         public static void LoadApplication(string url)
@@ -48,5 +51,11 @@ namespace WrapperFactory
         {
             Driver.Quit();
         }
+
+        public static void some (IWebElement element)
+        {
+            builder.MoveToElement(element).Click().Perform();
+        }
+        
     }
 }

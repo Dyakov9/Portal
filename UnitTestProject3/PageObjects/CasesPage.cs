@@ -1,8 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using PageObjects;
+using System.Threading;
 using TestDataAccess;
 using WrapperFactory;
 
@@ -29,11 +31,7 @@ namespace UnitTestProject3.PageObjects
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/div/span")]
         [CacheLookup]
         public IWebElement ImageCarouselForwardButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/div/span[1]")]
-        [CacheLookup]
-        public IWebElement ImageCarouselBackwardButton { get; set; }
-
+               
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/ul/li[2]/img")]
         [CacheLookup]
         public IWebElement SecondImage { get; set; }
@@ -55,10 +53,6 @@ namespace UnitTestProject3.PageObjects
             BrowserFactory.WaitUntilElementToBeClickable(ImageCarouselForwardButton);
             ImageCarouselForwardButton.Click();
             BrowserFactory.WaitUntilElementToBeClickable(SecondImage);
-            BrowserFactory.WaitUntilElementToBeClickable(ImageCarouselBackwardButton);
-            ImageCarouselBackwardButton.Click();
-            Assert.IsTrue(ImageCarouselBackwardButton.Displayed);
-            //BrowserFactory.WaitUntilElementToBeClickable(FirstImage);
         }
     }
 }
