@@ -29,5 +29,9 @@ namespace PageObjects
         {
             get { return GetPage<CasesPage>(); }
         }
+        public static ConnectionsPage ConnectionsPage
+        {
+            get { return GetPage<ConnectionsPage>(); }
+        }
     }
 }

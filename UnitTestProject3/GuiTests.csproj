@@ -74,10 +74,12 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PageObjects\CasesPage.cs" />
+    <Compile Include="PageObjects\ConnectionsPage.cs" />
     <Compile Include="PageObjects\CreateAccountUserPage.cs" />
     <Compile Include="PageObjects\IntegrationsPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Page.cs" />
+    <Compile Include="TestCases\CommentWithImageIsAddedTest.cs" />
     <Compile Include="TestCases\ImagesAreDisplayedTest.cs" />
     <Compile Include="TestCases\LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

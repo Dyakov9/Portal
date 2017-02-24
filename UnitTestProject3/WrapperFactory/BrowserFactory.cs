@@ -40,7 +40,12 @@ namespace WrapperFactory
 
         public static void WaitUntilTextToBePresentInElement(IWebElement element, string text)
         {
-            Wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
+            Wait.Until(ExpectedConditions. TextToBePresentInElement(element, text));
+        }
+        
+        public static void WaitUntilAlertIsPresent()
+        {
+            Wait.Until(ExpectedConditions.AlertIsPresent());
         }
 
         public static string GetUrl()
@@ -52,9 +57,9 @@ namespace WrapperFactory
             Driver.Quit();
         }
 
-        public static void some (IWebElement element)
+        public static IAlert InitAlert() 
         {
-            builder.MoveToElement(element).Click().Perform();
+            return Driver.SwitchTo().Alert();
         }
         
     }

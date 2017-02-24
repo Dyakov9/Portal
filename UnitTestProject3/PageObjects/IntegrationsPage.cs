@@ -14,10 +14,18 @@ namespace PageObjects
         [CacheLookup]
         public IWebElement CasesPageLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/li[2]/a")]
+        [CacheLookup]
+        public IWebElement ConnectionsPageLink { get; set; }
+
         public void GoToCasePage()
         {
             CasesPageLink.Click();
         }
-
+       
+        public void GoToConnectionsPage()
+        {
+            ConnectionsPageLink.Click();
+        }
     }
 }

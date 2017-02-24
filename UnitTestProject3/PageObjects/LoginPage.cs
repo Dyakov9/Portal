@@ -29,10 +29,10 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SoftwareUser { get; set; }
 
-    public void LoginToAppliction ()
+    public void LoginToAppliction (string keyName)
         {
             BrowserFactory.WaitUntilElementToBeClickable(Email);
-            var userData = ExcelDataAccess.GetTestData();
+            var userData = ExcelDataAccess.GetTestData(keyName);
             Email.Clear();
             Email.SendKeys(userData.Email);
             Password.Clear();
