@@ -47,6 +47,10 @@ namespace WrapperFactory
         {
             Wait.Until(ExpectedConditions.AlertIsPresent());
         }
+        public static void WaitUntilAlertIsAbsent()
+        {
+            Wait.Until(ExpectedConditions.AlertState(false));
+        }
 
         public static string GetUrl()
         {
