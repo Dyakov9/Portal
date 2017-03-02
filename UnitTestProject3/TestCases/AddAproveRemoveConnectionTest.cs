@@ -22,8 +22,8 @@ namespace TestCases
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction("Lab");
             Page.IntegrationsPage.GoToConnectionsPage();
-            Page.ConnectionsPage.ApproveConnectionRequest();
-            // BrowserFactory.QuitBrowser();
+            Page.ConnectionsPage.ApproveConnectionRequestAndRemoveConnection();
+            BrowserFactory.QuitBrowser();
         }
     }
 }

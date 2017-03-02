@@ -53,8 +53,17 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement Toaster { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/ul/li[5]/span")]
+        [CacheLookup]
+        private IWebElement PdfButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]/div[1]/a/input")]
+        [CacheLookup]
+        private IWebElement ChoosePdfFileButton { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]/div[1]/button")]
+        [CacheLookup]
+        private IWebElement UploadPdfFileButton { get; set; }
 
         public void Search(string keyName)
         {
@@ -88,5 +97,15 @@ namespace UnitTestProject3.PageObjects
            BrowserFactory.WaitUntilTextToBePresentInElement(Toaster, userData.AddCommentWithImageResponse);
 
         }
+        public void UploadPdfFile(string path)
+        {
+            BrowserFactory.WaitUntilElementToBeClickable(PdfButton);
+            PdfButton.Click();
+            ChoosePdfFileButton.SendKeys(path);
+            UploadPdfFileButton.Click();
+            
+            //*[@id="toast-container"]/div/div[3]/div
+        }You have successfully uploaded the file!
+
     }
 }

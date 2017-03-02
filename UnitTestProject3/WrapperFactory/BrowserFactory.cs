@@ -17,7 +17,7 @@ namespace WrapperFactory
         public static void InitBrowser()
         {
             Driver = new ChromeDriver();
-            Wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(1));
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
             builder = new Actions (Driver);
             
         }
