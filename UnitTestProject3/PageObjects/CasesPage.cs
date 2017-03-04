@@ -65,6 +65,11 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
+        [FindsBy(How = How.LinkText, Using = "AaZz059Kl.pdf")]
+        [CacheLookup]
+        private IWebElement PdfFileLink { get; set; }
+
+
         public void Search(string keyName)
         {
             BrowserFactory.WaitUntilElementToBeClickable(SearchField);
@@ -99,13 +104,12 @@ namespace UnitTestProject3.PageObjects
         }
         public void UploadPdfFile(string path)
         {
+            Search("Clinic");
             BrowserFactory.WaitUntilElementToBeClickable(PdfButton);
             PdfButton.Click();
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();
-            
-            //*[@id="toast-container"]/div/div[3]/div
-        }You have successfully uploaded the file!
-
-    }
+            BrowserFactory.WaitUntilTextToBePresentInElement(Toaster, "You have successfully uploaded the file!");
+        }
+            }
 }
