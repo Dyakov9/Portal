@@ -8,15 +8,27 @@ namespace PageObjects
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div/ul/li[2]/div[2]/div[4]/button")]
         [CacheLookup] 
-        public IWebElement IntegrateAccountsButton { get; set; }
+        private IWebElement IntegrateAccountsButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[1]/a")]
         [CacheLookup]
-        public IWebElement CasesPageLink { get; set; }
+        private IWebElement CasesPageLink { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[2]/a")]
         [CacheLookup]
-        public IWebElement ConnectionsPageLink { get; set; }
+        private IWebElement ConnectionsPageLink { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[5]/div/div[3]/div/input")]
+        [CacheLookup]
+        private IWebElement ValidationCodeField { get; set; }
+
+        [FindsBy(How = How.Id, Using = "swornDeclarationCheckBox")]
+        [CacheLookup]
+        private IWebElement ValidationCodeCheckBox { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[5]/div/div[5]/div[2]/button")]
+        [CacheLookup]
+        private IWebElement ValidationCodeProceedButton { get; set; }
 
         public void GoToCasePage()
         {
@@ -26,6 +38,14 @@ namespace PageObjects
         public void GoToConnectionsPage()
         {
             ConnectionsPageLink.Click();
+        }
+        public void IntegrateAccounts()
+        {
+            IntegrateAccountsButton.Click();
+            ValidationCodeField.Clear();
+            ValidationCodeField.SendKeys("688540");
+            ValidationCodeCheckBox.Click();
+            ValidationCodeProceedButton.Click();
         }
     }
 }

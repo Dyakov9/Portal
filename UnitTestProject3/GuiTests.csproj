@@ -82,6 +82,7 @@
     <Compile Include="TestCases\AddAproveRemoveConnectionTest.cs" />
     <Compile Include="TestCases\CommentWithImageIsAddedTest.cs" />
     <Compile Include="TestCases\ImagesAreDisplayedTest.cs" />
+    <Compile Include="TestCases\IntegrateAccountsTest.cs" />
     <Compile Include="TestCases\LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\NewAccountTest.cs" />

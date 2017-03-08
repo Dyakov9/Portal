@@ -129,7 +129,7 @@ namespace PageObjects
         public void CreateAccount()
         {
             CreateAccountButton.Click();
-            Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
+           // Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
         }
 
        }

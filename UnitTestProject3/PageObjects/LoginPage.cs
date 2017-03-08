@@ -38,7 +38,7 @@ namespace PageObjects
             Password.Clear();
             Password.SendKeys(userData.Password);
             Login.Submit();
-            BrowserFactory.WaitUntilElementToBeClickable(Page.IntegrationsPage.IntegrateAccountsButton);
+            BrowserFactory.WaitUntilUrlToBe();
                     }
         public void GoToCreateAccountUserPage()
         {
