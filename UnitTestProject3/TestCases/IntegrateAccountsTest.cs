@@ -16,7 +16,7 @@ namespace TestCases
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction("Clinic");
             Page.IntegrationsPage.IntegrateAccounts();
-            BrowserFactory.QuitBrowser();
+            //BrowserFactory.QuitBrowser();
         }
     }
 }

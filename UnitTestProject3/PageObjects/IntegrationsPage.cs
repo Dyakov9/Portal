@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using WrapperFactory;
 
 namespace PageObjects
 {
@@ -30,6 +31,18 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement ValidationCodeProceedButton { get; set; }
 
+        [FindsBy(How = How.Id, Using = "doctorname")]
+        [CacheLookup]
+        private IWebElement DoctorNameField { get; set; }
+
+        [FindsBy(How = How.Id, Using = "password")]
+        [CacheLookup]
+        private IWebElement DoctorPasswordField { get; set; }
+
+        [FindsBy(How = How.Id, Using = "form_0")]
+        [CacheLookup]
+        private IWebElement AlignPageLogin { get; set; }
+
         public void GoToCasePage()
         {
             CasesPageLink.Click();
@@ -41,11 +54,20 @@ namespace PageObjects
         }
         public void IntegrateAccounts()
         {
+            BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
             IntegrateAccountsButton.Click();
+            BrowserFactory.WaitUntilElementToBeClickable(ValidationCodeField);
             ValidationCodeField.Clear();
             ValidationCodeField.SendKeys("688540");
             ValidationCodeCheckBox.Click();
             ValidationCodeProceedButton.Click();
+            BrowserFactory.WaitUntilElementToBeClickable(DoctorNameField);
+            DoctorNameField.Clear();
+            DoctorNameField.SendKeys("ntest");
+            DoctorPasswordField.Clear();
+            DoctorPasswordField.SendKeys("align");
+            AlignPageLogin.Click();
+
         }
     }
 }

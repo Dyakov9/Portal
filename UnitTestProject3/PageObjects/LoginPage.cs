@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TestDataAccess;
@@ -38,7 +39,7 @@ namespace PageObjects
             Password.Clear();
             Password.SendKeys(userData.Password);
             Login.Submit();
-            BrowserFactory.WaitUntilUrlToBe();
+            BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
                     }
         public void GoToCreateAccountUserPage()
         {
