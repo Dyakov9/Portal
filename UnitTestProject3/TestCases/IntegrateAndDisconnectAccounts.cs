@@ -7,16 +7,21 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-    public class IntegrateAccountsTest
+    public class IntegrateAndDisconnectAccountsTest
     {
         [TestMethod]
-        public void IntegrateAccounts()
+        public void IntegrateAndDisconnectAccounts()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction("Clinic");
             Page.IntegrationsPage.IntegrateAccounts();
-            //BrowserFactory.QuitBrowser();
+            BrowserFactory.QuitBrowser();
+            BrowserFactory.InitBrowser();
+            BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+            Page.Login.LoginToAppliction("Clinic");
+            Page.IntegrationsPage.DisconnectAccounts();
+            BrowserFactory.QuitBrowser();
         }
     }
 }

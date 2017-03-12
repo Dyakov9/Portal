@@ -21,10 +21,14 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SearchButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/dl/dd[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[2]/div/dl/dd[2]")]
         [CacheLookup]
         private IWebElement CaseId { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div[1]/button")]
+        [CacheLookup]
+        private IWebElement DetailsButton { get; set; }
+        
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/ul/li[1]/img")]
         [CacheLookup]
         private IWebElement FirstImage { get; set; }
@@ -78,6 +82,8 @@ namespace UnitTestProject3.PageObjects
             SearchField.SendKeys(userData.CaseId);
             BrowserFactory.WaitUntilElementToBeClickable(SearchButton);
             SearchButton.Click();
+            BrowserFactory.WaitUntilElementToBeClickable(DetailsButton);
+            DetailsButton.Click();
             BrowserFactory.WaitUntilTextToBePresentInElement(CaseId, userData.CaseId);
             
         }

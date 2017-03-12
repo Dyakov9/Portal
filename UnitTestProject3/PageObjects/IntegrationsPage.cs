@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
+using System.Configuration;
 using WrapperFactory;
 
 namespace PageObjects
@@ -8,7 +9,7 @@ namespace PageObjects
     {
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div/ul/li[2]/div[2]/div[4]/button")]
-        [CacheLookup] 
+        [CacheLookup]
         private IWebElement IntegrateAccountsButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[1]/a")]
@@ -43,11 +44,27 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement AlignPageLogin { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div/ul/li[1]/div/div[4]/button")]
+        [CacheLookup]
+        private IWebElement DisconnectAccountsButton { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='toast-container']/div/div[3]/div")]
+        [CacheLookup]
+        private IWebElement IntegrationPageToaster { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/a")]
+        [CacheLookup]
+        private IWebElement ProfileMenu { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[2]/a")]
+        [CacheLookup]
+        private IWebElement LogOutLink { get; set; }
+
         public void GoToCasePage()
         {
             CasesPageLink.Click();
         }
-       
+
         public void GoToConnectionsPage()
         {
             ConnectionsPageLink.Click();
@@ -67,7 +84,21 @@ namespace PageObjects
             DoctorPasswordField.Clear();
             DoctorPasswordField.SendKeys("align");
             AlignPageLogin.Click();
+            BrowserFactory.WaitUntilTextToBePresentInElement(DisconnectAccountsButton, "Disconnect accounts");
+                    }
+        public void DisconnectAccounts()
+        {
+            BrowserFactory.WaitUntilElementToBeClickable(DisconnectAccountsButton);
+            DisconnectAccountsButton.Click();
+            BrowserFactory.WaitUntilTextToBePresentInElement(IntegrationPageToaster, "You have successfully disconnected your Invisalign integration");
+                    }
 
+        public void LogOut()
+        {
+            BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
+            BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
+            BrowserFactory.MoveToElement(ProfileMenu, LogOutLink);
+           // BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }
 }

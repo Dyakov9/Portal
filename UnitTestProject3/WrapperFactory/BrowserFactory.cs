@@ -33,6 +33,11 @@ namespace WrapperFactory
             Wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
+        public static void WaitUntilElementExists(By locator)
+        {
+            Wait.Until(ExpectedConditions.ElementExists(locator));
+        }
+
         public static void WaitUntilElementIsInvisible(By locator)
         {
             Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
@@ -47,9 +52,15 @@ namespace WrapperFactory
         {
             Wait.Until(ExpectedConditions.AlertIsPresent());
         }
+
         public static void WaitUntilAlertIsAbsent()
         {
             Wait.Until(ExpectedConditions.AlertState(false));
+        }
+
+        public static void FindElementByLokator(By locator)
+        {
+            Driver.FindElement(locator);
         }
 
         public static string GetUrl()
@@ -69,6 +80,11 @@ namespace WrapperFactory
         public static void WaitUntilUrlToBe(string text)
         {
             Wait.Until(ExpectedConditions.UrlToBe(text));
+        }
+
+        public static void MoveToElement(IWebElement element, IWebElement secondEelement)
+        {
+            builder.MoveToElement(element).MoveToElement(secondEelement).Click().Build().Perform();
         }
     }
 }
