@@ -33,5 +33,9 @@ namespace PageObjects
         {
             get { return GetPage<ConnectionsPage>(); }
         }
+        public static SettingsPage SettingsPage
+        {
+            get { return GetPage<SettingsPage>(); }
+        }
     }
 }

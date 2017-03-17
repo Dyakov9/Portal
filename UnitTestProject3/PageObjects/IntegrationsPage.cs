@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using System.Configuration;
+using OpenQA.Selenium.Internal;
 using WrapperFactory;
 
 namespace PageObjects
@@ -60,9 +61,19 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement LogOutLink { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a")]
+        [CacheLookup]
+        private IWebElement SettingsPageLink { get; set; }
+        
+
         public void GoToCasePage()
         {
             CasesPageLink.Click();
+        }
+
+        public void GoToSettingsPage()
+        {
+            BrowserFactory.MoveToElement(ProfileMenu, SettingsPageLink);
         }
 
         public void GoToConnectionsPage()
@@ -96,7 +107,6 @@ namespace PageObjects
         public void LogOut()
         {
             BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
-            BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
             BrowserFactory.MoveToElement(ProfileMenu, LogOutLink);
            // BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }

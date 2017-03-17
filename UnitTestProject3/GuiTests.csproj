@@ -79,8 +79,10 @@
     <Compile Include="PageObjects\IntegrationsPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Page.cs" />
+    <Compile Include="PageObjects\SettingsPage.cs" />
     <Compile Include="TestCases\AddAproveRemoveConnectionTest.cs" />
     <Compile Include="TestCases\CommentWithImageIsAddedTest.cs" />
+    <Compile Include="TestCases\EditAccountInformationTest.cs" />
     <Compile Include="TestCases\ImagesAreDisplayedTest.cs" />
     <Compile Include="TestCases\IntegrateAndDisconnectAccounts.cs" />
     <Compile Include="TestCases\LoginTest.cs" />
