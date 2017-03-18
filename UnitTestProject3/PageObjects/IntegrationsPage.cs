@@ -108,7 +108,7 @@ namespace PageObjects
         {
             BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
             BrowserFactory.MoveToElement(ProfileMenu, LogOutLink);
-           // BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
+            BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }
 }
