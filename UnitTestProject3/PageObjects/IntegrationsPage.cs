@@ -58,7 +58,7 @@ namespace PageObjects
         private IWebElement ProfileMenu { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[2]/a")]
-        [CacheLookup]
+        [CacheLookup]                         
         private IWebElement LogOutLink { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a")]
@@ -73,7 +73,8 @@ namespace PageObjects
 
         public void GoToSettingsPage()
         {
-            BrowserFactory.MoveToElement(ProfileMenu, SettingsPageLink);
+         BrowserFactory.MoveToElement(ProfileMenu);
+            SettingsPageLink.Click();
         }
 
         public void GoToConnectionsPage()
@@ -106,8 +107,11 @@ namespace PageObjects
 
         public void LogOut()
         {
-            BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
-            BrowserFactory.MoveToElement(ProfileMenu, LogOutLink);
+            //BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
+            BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
+            BrowserFactory.MoveToElement(ProfileMenu);
+            //BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
+            LogOutLink.Click();
             BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }

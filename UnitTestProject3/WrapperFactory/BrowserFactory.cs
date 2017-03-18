@@ -82,9 +82,10 @@ namespace WrapperFactory
             Wait.Until(ExpectedConditions.UrlToBe(text));
         }
 
-        public static void MoveToElement(IWebElement element, IWebElement secondEelement)
+        public static void MoveToElement(IWebElement element)
         {
-            builder.MoveToElement(element).MoveToElement(secondEelement).Click().Build().Perform();
+            builder.MoveToElement(element).Click().Build().Perform();
+            //builder.MoveToElement(secondElement).Click().Build().Perform();
         }
     }
 }
