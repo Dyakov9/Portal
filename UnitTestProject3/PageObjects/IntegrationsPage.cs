@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.PageObjects;
 using System.Configuration;
 using OpenQA.Selenium.Internal;
 using WrapperFactory;
+using System.Threading;
 
 namespace PageObjects
 {
@@ -64,7 +65,15 @@ namespace PageObjects
         [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a")]
         [CacheLookup]
         private IWebElement SettingsPageLink { get; set; }
-        
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='toggleNav']/li[5]/a")]
+        [CacheLookup]
+        private IWebElement Profile { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//*[@id='toggleNav']/li[5]/ul/li[2]/a")]
+        [CacheLookup]
+        private IWebElement SettingsPageLink2 { get; set; }
+
 
         public void GoToCasePage()
         {
@@ -73,7 +82,10 @@ namespace PageObjects
 
         public void GoToSettingsPage()
         {
-         BrowserFactory.MoveToElement(ProfileMenu);
+            //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
+           // Profile.Click();
+            BrowserFactory.MoveToElement(ProfileMenu);
+            BrowserFactory.WaitUntilElementToBeClickable(SettingsPageLink);
             SettingsPageLink.Click();
         }
 
@@ -108,11 +120,12 @@ namespace PageObjects
         public void LogOut()
         {
             //BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
-            BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-            BrowserFactory.MoveToElement(ProfileMenu);
-            //BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
+            //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
+           BrowserFactory.MoveToElement(ProfileMenu);
+            BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
+            Thread.Sleep(1000);
             LogOutLink.Click();
-            BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
+            //BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TestCases
             Page.Login.LoginToAppliction("Clinic");
             Page.IntegrationsPage.GoToSettingsPage();
             //Page.SettingsPage.EditAccountInformation();
-           // BrowserFactory.QuitBrowser();
+           //BrowserFactory.QuitBrowser();
         }
     }
 }

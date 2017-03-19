@@ -30,7 +30,7 @@ namespace WrapperFactory
 
         public static void WaitUntilElementToBeClickable(IWebElement element )
         {
-            Wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            Wait.Until(ExpectedConditions. ElementToBeClickable(element));
         }
 
         public static void WaitUntilElementExists(By locator)
