@@ -4,7 +4,9 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using PageObjects;
 using System.Runtime.Serialization;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Remote;
 
 namespace WrapperFactory
 {
@@ -16,7 +18,11 @@ namespace WrapperFactory
 
         public static void InitBrowser()
         {
-            Driver = new ChromeDriver();
+
+            var options = new ChromeOptions();
+            options.AddUserProfilePreference("credentials_enable_service", false);
+            options.AddUserProfilePreference("password_manager_enabled", false);
+            Driver = new ChromeDriver(options);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
             builder = new Actions (Driver);
             
@@ -36,6 +42,11 @@ namespace WrapperFactory
         public static void WaitUntilElementExists(By locator)
         {
             Wait.Until(ExpectedConditions.ElementExists(locator));
+        }
+
+        public static void WaitUntilElementIsVisible(By locator)
+        {
+            Wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
         public static void WaitUntilElementIsInvisible(By locator)
@@ -58,9 +69,10 @@ namespace WrapperFactory
             Wait.Until(ExpectedConditions.AlertState(false));
         }
 
-        public static void FindElementByLokator(By locator)
+        public static IWebElement FindElementByLokator(By locator)
         {
-            Driver.FindElement(locator);
+            return Driver.FindElement(locator);
+              
         }
 
         public static string GetUrl()

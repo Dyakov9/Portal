@@ -9,6 +9,7 @@ namespace PageObjects
 {
     public class IntegrationsPage
     {
+        private IAlert Alert { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div/ul/li[2]/div[2]/div[4]/button")]
         [CacheLookup]
@@ -83,10 +84,14 @@ namespace PageObjects
         public void GoToSettingsPage()
         {
             //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-           // Profile.Click();
+            Thread.Sleep(1000);
             BrowserFactory.MoveToElement(ProfileMenu);
-            BrowserFactory.WaitUntilElementToBeClickable(SettingsPageLink);
+            SettingsPageLink = BrowserFactory.FindElementByLokator(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
+            //Thread.Sleep(5000);
+            //BrowserFactory.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
+           // BrowserFactory.WaitUntilElementToBeClickable(SettingsPageLink);
             SettingsPageLink.Click();
+
         }
 
         public void GoToConnectionsPage()
@@ -121,9 +126,10 @@ namespace PageObjects
         {
             //BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
             //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-           BrowserFactory.MoveToElement(ProfileMenu);
-            BrowserFactory.WaitUntilElementToBeClickable(LogOutLink);
-            Thread.Sleep(1000);
+           //BrowserFactory.MoveToElement(ProfileMenu);
+           Thread.Sleep(3000);
+            BrowserFactory.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
+            
             LogOutLink.Click();
             //BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
