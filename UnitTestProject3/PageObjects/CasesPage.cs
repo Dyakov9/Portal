@@ -8,6 +8,7 @@ using PageObjects;
 using System.Threading;
 using TestDataAccess;
 using WrapperFactory;
+using UnitTestProject3.Extensions;
 
 namespace UnitTestProject3.PageObjects
 {
@@ -76,13 +77,12 @@ namespace UnitTestProject3.PageObjects
 
         public void Search(string keyName)
         {
-            BrowserFactory.WaitUntilElementToBeClickable(SearchField);
+            SearchField.WaitUntilElementToBeClickable();
             var userData = ExcelDataAccess.GetTestData(keyName);
-            SearchField. Clear();
-            SearchField.SendKeys(userData.CaseId);
-            BrowserFactory.WaitUntilElementToBeClickable(SearchButton);
+            SearchField.EnterText(userData.CaseId);
+            SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(DetailsButton);
+            DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
             BrowserFactory.WaitUntilTextToBePresentInElement(CaseId, userData.CaseId);
             
@@ -90,20 +90,19 @@ namespace UnitTestProject3.PageObjects
         public void VerifyImagesAreDisplayed ()
         {
             Search("Clinic");
-            BrowserFactory.WaitUntilElementToBeClickable(FirstImage);
-            BrowserFactory.WaitUntilElementToBeClickable(ImageCarouselForwardButton);
+            FirstImage.WaitUntilElementToBeClickable();
+            ImageCarouselForwardButton.WaitUntilElementToBeClickable();
             ImageCarouselForwardButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(SecondImage);
+            SecondImage.WaitUntilElementToBeClickable();
         }
 
         public void AddCommentWithImage(string keyName)
         {
            var userData = ExcelDataAccess.GetTestData(keyName);
-           BrowserFactory.WaitUntilElementToBeClickable(FirstImage);
-           CommentField.Clear();
-           CommentField.SendKeys(userData.Text);
+           FirstImage.WaitUntilElementToBeClickable();
+           CommentField.EnterText(userData.Text);
            AddImageButton.SendKeys(userData.FilePath);
-           BrowserFactory.WaitUntilElementToBeClickable(SendCommentButton);
+           SendCommentButton.WaitUntilElementToBeClickable();
            SendCommentButton.Click();
            BrowserFactory.WaitUntilTextToBePresentInElement(Toaster, userData.AddCommentWithImageResponse);
 
@@ -111,7 +110,7 @@ namespace UnitTestProject3.PageObjects
         public void UploadPdfFile(string path)
         {
             Search("Clinic");
-            BrowserFactory.WaitUntilElementToBeClickable(PdfButton);
+            PdfButton.WaitUntilElementToBeClickable();
             PdfButton.Click();
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();

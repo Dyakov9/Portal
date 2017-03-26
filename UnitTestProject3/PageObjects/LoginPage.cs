@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TestDataAccess;
 using WrapperFactory;
+using UnitTestProject3.Extensions;
 
 namespace PageObjects
 {
@@ -32,12 +33,10 @@ namespace PageObjects
 
         public void LoginToAppliction (string keyName)
         {
-            BrowserFactory.WaitUntilElementToBeClickable(Email);
+            Email.WaitUntilElementToBeClickable();
             var userData = ExcelDataAccess.GetTestData(keyName);
-            Email.Clear();
-            Email.SendKeys(userData.Email);
-            Password.Clear();
-            Password.SendKeys(userData.Password);
+            Email.EnterText(userData.Email);
+            Password.EnterText(userData.Password);
             Login.Submit();
             BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
                     }

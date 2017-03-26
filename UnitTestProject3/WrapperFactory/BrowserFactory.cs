@@ -14,8 +14,7 @@ namespace WrapperFactory
     {
         public static IWebDriver Driver { get; set; }
         public static WebDriverWait Wait { get; set; }
-        public static Actions builder { get; set; }
-
+        
         public static void InitBrowser()
         {
 
@@ -24,7 +23,7 @@ namespace WrapperFactory
             options.AddUserProfilePreference("password_manager_enabled", false);
             Driver = new ChromeDriver(options);
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
-            builder = new Actions (Driver);
+            
             
         }
 
@@ -34,70 +33,16 @@ namespace WrapperFactory
             Driver.Manage().Window.Maximize();
         }
 
-        public static void WaitUntilElementToBeClickable(IWebElement element )
+        public static IAlert InitAlert()
         {
-            Wait.Until(ExpectedConditions. ElementToBeClickable(element));
+            return Driver.SwitchTo().Alert();
         }
 
-        public static void WaitUntilElementExists(By locator)
-        {
-            Wait.Until(ExpectedConditions.ElementExists(locator));
-        }
-
-        public static void WaitUntilElementIsVisible(By locator)
-        {
-            Wait.Until(ExpectedConditions.ElementIsVisible(locator));
-        }
-
-        public static void WaitUntilElementIsInvisible(By locator)
-        {
-            Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
-        }
-
-        public static void WaitUntilTextToBePresentInElement(IWebElement element, string text)
-        {
-            Wait.Until(ExpectedConditions.TextToBePresentInElement(element, text));
-        }
-        
-        public static void WaitUntilAlertIsPresent()
-        {
-            Wait.Until(ExpectedConditions.AlertIsPresent());
-        }
-
-        public static void WaitUntilAlertIsAbsent()
-        {
-            Wait.Until(ExpectedConditions.AlertState(false));
-        }
-
-        public static IWebElement FindElementByLokator(By locator)
-        {
-            return Driver.FindElement(locator);
-              
-        }
-
-        public static string GetUrl()
-        {
-           return Driver.Url; 
-        }
         public static void QuitBrowser()
         {
             Driver.Quit();
         }
 
-        public static IAlert InitAlert() 
-        {
-            return Driver.SwitchTo().Alert();
-        }
-
-        public static void WaitUntilUrlToBe(string text)
-        {
-            Wait.Until(ExpectedConditions.UrlToBe(text));
-        }
-
-        public static void MoveToElement(IWebElement element)
-        {
-            builder.MoveToElement(element).Click().Build().Perform();
-            //builder.MoveToElement(secondElement).Click().Build().Perform();
-        }
+       
     }
 }

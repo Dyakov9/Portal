@@ -73,6 +73,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="PageObjects\CasesPage.cs" />
     <Compile Include="PageObjects\ConnectionsPage.cs" />
     <Compile Include="PageObjects\CreateAccountUserPage.cs" />

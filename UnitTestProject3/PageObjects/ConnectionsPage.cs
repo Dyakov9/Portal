@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using TestDataAccess;
 using WrapperFactory;
-
+using UnitTestProject3.Extensions;
 
 namespace UnitTestProject3.PageObjects
 {
@@ -59,13 +59,12 @@ namespace UnitTestProject3.PageObjects
         public void SendConnectionRequest(string keyName)
         {
             var userData = ExcelDataAccess.GetTestData(keyName);
-            BrowserFactory.WaitUntilElementToBeClickable(AddConnectionButton);
+            AddConnectionButton.WaitUntilElementToBeClickable();
             AddConnectionButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(FindColloboratorField);
-            FindColloboratorField.Clear();
-            FindColloboratorField.SendKeys(userData.Email);
+            FindColloboratorField.WaitUntilElementToBeClickable();
+            FindColloboratorField.EnterText(userData.Email);
             FindColloboratorButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(ColloboratorsName);
+            ColloboratorsName.WaitUntilElementToBeClickable();
             ColloboratorsName.Click();
             ConnectButton.Click();
             BrowserFactory.WaitUntilAlertIsPresent();
@@ -73,13 +72,13 @@ namespace UnitTestProject3.PageObjects
             ActualAlertText = Alert.Text;
             Assert.AreEqual(userData.ExpectedResponseToConnectionRequest, ActualAlertText);
             Alert.Accept();
-            BrowserFactory.WaitUntilElementToBeClickable(Colloborator);
+            Colloborator.WaitUntilElementToBeClickable();
             Colloborator.Click();
             BrowserFactory.WaitUntilTextToBePresentInElement(ConnectionStateText, "Waiting for approval");
         }
         public void ApproveConnectionRequestAndRemoveConnection()
         {
-            BrowserFactory.WaitUntilElementToBeClickable(Colloborator);
+            Colloborator.WaitUntilElementToBeClickable();
             Colloborator.Click();
             ApproveConnectionButton.Click();
             BrowserFactory.WaitUntilTextToBePresentInElement(ConnectionStateText, "Active");

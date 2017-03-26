@@ -4,6 +4,7 @@ using System.Configuration;
 using OpenQA.Selenium.Internal;
 using WrapperFactory;
 using System.Threading;
+using UnitTestProject3.Extensions;
 
 namespace PageObjects
 {
@@ -63,7 +64,7 @@ namespace PageObjects
         [CacheLookup]                         
         private IWebElement LogOutLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]")]
         [CacheLookup]
         private IWebElement SettingsPageLink { get; set; }
 
@@ -84,12 +85,11 @@ namespace PageObjects
         public void GoToSettingsPage()
         {
             //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-            Thread.Sleep(1000);
-            BrowserFactory.MoveToElement(ProfileMenu);
-            SettingsPageLink = BrowserFactory.FindElementByLokator(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
-            //Thread.Sleep(5000);
-            //BrowserFactory.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
-           // BrowserFactory.WaitUntilElementToBeClickable(SettingsPageLink);
+            //Thread.Sleep(1000);
+            ProfileMenu.MoveToElement();
+            //Thread.Sleep(3000);
+            Extensions.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
+            SettingsPageLink.WaitUntilElementToBeClickable();
             SettingsPageLink.Click();
 
         }
@@ -100,26 +100,23 @@ namespace PageObjects
         }
         public void IntegrateAccounts()
         {
-            BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
+            IntegrateAccountsButton.WaitUntilElementToBeClickable();
             IntegrateAccountsButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(ValidationCodeField);
-            ValidationCodeField.Clear();
-            ValidationCodeField.SendKeys("688540");
+            ValidationCodeField.WaitUntilElementToBeClickable();
+            ValidationCodeField.EnterText("688540");
             ValidationCodeCheckBox.Click();
             ValidationCodeProceedButton.Click();
-            BrowserFactory.WaitUntilElementToBeClickable(DoctorNameField);
-            DoctorNameField.Clear();
-            DoctorNameField.SendKeys("ntest");
-            DoctorPasswordField.Clear();
-            DoctorPasswordField.SendKeys("align");
+            DoctorNameField.WaitUntilElementToBeClickable();
+            DoctorNameField.EnterText("ntest");
+            DoctorPasswordField.EnterText("align");
             AlignPageLogin.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(DisconnectAccountsButton, "Disconnect accounts");
+            DisconnectAccountsButton.WaitUntilTextToBePresentInElement("Disconnect accounts");
                     }
         public void DisconnectAccounts()
         {
-            BrowserFactory.WaitUntilElementToBeClickable(DisconnectAccountsButton);
+            DisconnectAccountsButton.WaitUntilElementToBeClickable();
             DisconnectAccountsButton.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(IntegrationPageToaster, "You have successfully disconnected your Invisalign integration");
+            IntegrationPageToaster.WaitUntilTextToBePresentInElement( "You have successfully disconnected your Invisalign integration");
                     }
 
         public void LogOut()
@@ -128,7 +125,7 @@ namespace PageObjects
             //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
            //BrowserFactory.MoveToElement(ProfileMenu);
            Thread.Sleep(3000);
-            BrowserFactory.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
+            Extensions.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
             
             LogOutLink.Click();
             //BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
