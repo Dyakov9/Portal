@@ -38,7 +38,7 @@ namespace PageObjects
             Email.EnterText(userData.Email);
             Password.EnterText(userData.Password);
             Login.Submit();
-            BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
+            Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
                     }
         public void GoToCreateAccountUserPage()
         {

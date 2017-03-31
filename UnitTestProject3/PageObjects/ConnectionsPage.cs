@@ -67,28 +67,28 @@ namespace UnitTestProject3.PageObjects
             ColloboratorsName.WaitUntilElementToBeClickable();
             ColloboratorsName.Click();
             ConnectButton.Click();
-            BrowserFactory.WaitUntilAlertIsPresent();
+            Extensions.Extensions.WaitUntilAlertIsPresent();
             Alert = BrowserFactory.InitAlert();
             ActualAlertText = Alert.Text;
             Assert.AreEqual(userData.ExpectedResponseToConnectionRequest, ActualAlertText);
             Alert.Accept();
             Colloborator.WaitUntilElementToBeClickable();
             Colloborator.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(ConnectionStateText, "Waiting for approval");
+            ConnectionStateText.WaitUntilTextToBePresentInElement("Waiting for approval");
         }
         public void ApproveConnectionRequestAndRemoveConnection()
         {
             Colloborator.WaitUntilElementToBeClickable();
             Colloborator.Click();
             ApproveConnectionButton.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(ConnectionStateText, "Active");
+            ConnectionStateText.WaitUntilTextToBePresentInElement("Active");
             RemoveConnectionButton.Click();
             BrowserFactory.InitAlert();
             Alert = BrowserFactory.InitAlert();
             ActualAlertText = Alert.Text;
             Assert.AreEqual("This action will remove the connection and cannot be undone. Would you like to proceed?", ActualAlertText);
             Alert.Accept();
-            BrowserFactory.WaitUntilElementIsInvisible(By.XPath("/html/body/div[3]/div/div/div[2]/div[1]/div/ul/li/div/div[1]"));
+            Extensions.Extensions.WaitUntilElementIsInvisible(By.XPath("/html/body/div[3]/div/div/div[2]/div[1]/div/ul/li/div/div[1]"));
         }
 
 

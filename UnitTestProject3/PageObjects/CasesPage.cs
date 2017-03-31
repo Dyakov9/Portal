@@ -22,11 +22,11 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SearchButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[2]/div/dl/dd[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[3]/dl/dd[2]")]
         [CacheLookup]
         private IWebElement CaseId { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[1]/div[1]/button")]
+        [FindsBy(How = How.ClassName, Using = "show-details")]
         [CacheLookup]
         private IWebElement DetailsButton { get; set; }
         
@@ -42,11 +42,15 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SecondImage { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[2]/div[2]/textarea")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/ul/li[3]/span")]
+        [CacheLookup]
+        private IWebElement CommentTab { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/textarea")]
         [CacheLookup]
         private IWebElement CommentField { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div[2]/button")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/button")]
         [CacheLookup]
         private IWebElement SendCommentButton { get; set; }
 
@@ -58,9 +62,9 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement Toaster { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/ul/li[5]/span")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/ul/li[4]/span")]
         [CacheLookup]
-        private IWebElement PdfButton { get; set; }
+        private IWebElement PdfTab { get; set; }
 
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]/div[1]/a/input")]
         [CacheLookup]
@@ -84,7 +88,7 @@ namespace UnitTestProject3.PageObjects
             SearchButton.Click();
             DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(CaseId, userData.CaseId);
+            CaseId.WaitUntilTextToBePresentInElement( userData.CaseId);
             
         }
         public void VerifyImagesAreDisplayed ()
@@ -100,21 +104,22 @@ namespace UnitTestProject3.PageObjects
         {
            var userData = ExcelDataAccess.GetTestData(keyName);
            FirstImage.WaitUntilElementToBeClickable();
+           CommentTab.Click();
            CommentField.EnterText(userData.Text);
            AddImageButton.SendKeys(userData.FilePath);
            SendCommentButton.WaitUntilElementToBeClickable();
            SendCommentButton.Click();
-           BrowserFactory.WaitUntilTextToBePresentInElement(Toaster, userData.AddCommentWithImageResponse);
+           Toaster.WaitUntilTextToBePresentInElement( userData.AddCommentWithImageResponse);
 
         }
         public void UploadPdfFile(string path)
         {
             Search("Clinic");
-            PdfButton.WaitUntilElementToBeClickable();
-            PdfButton.Click();
+            PdfTab.WaitUntilElementToBeClickable();
+            PdfTab.Click();
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();
-            BrowserFactory.WaitUntilTextToBePresentInElement(Toaster, "You have successfully uploaded the file!");
+            Toaster.WaitUntilTextToBePresentInElement( "You have successfully uploaded the file!");
         }
             }
 }

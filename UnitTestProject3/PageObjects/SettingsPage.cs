@@ -74,11 +74,11 @@ namespace PageObjects
 
         public void EditAccountInformation()
         {
-            BrowserFactory.WaitUntilTextToBePresentInElement(AccountNameResult, "UiTestClinic@spam4.me");
-            BrowserFactory.WaitUntilTextToBePresentInElement(AddressResult,"Long, LA, 111, Denmark");
-            BrowserFactory.WaitUntilTextToBePresentInElement(PhoneNumberResult, "123");
-            BrowserFactory.WaitUntilTextToBePresentInElement(DongleResult,"92295796");
-            BrowserFactory.WaitUntilTextToBePresentInElement(NameResult, "John Big");
+            AccountNameResult.WaitUntilTextToBePresentInElement("UiTestClinic@spam4.me");
+            AddressResult.WaitUntilTextToBePresentInElement("Long, LA, 111, Denmark");
+            PhoneNumberResult.WaitUntilTextToBePresentInElement( "123");
+            DongleResult.WaitUntilTextToBePresentInElement("92295796");
+            NameResult.WaitUntilTextToBePresentInElement( "John Big");
             EditAccoutInformationButton.WaitUntilElementToBeClickable();
             EditAccoutInformationButton.Click();
             AccountName.EnterText("UiTestClinic2@spam4.me");
