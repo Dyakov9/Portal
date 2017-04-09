@@ -14,7 +14,7 @@ namespace UnitTestProject3.PageObjects
 
         private string ActualAlertText { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/button")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div/button")]
         [CacheLookup]
         private IWebElement AddConnectionButton { get; set; }
 
@@ -42,7 +42,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement Colloborator { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[3]/div/div/div/button[1]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div/ul/li/div/div[4]/div/div/div[1]/button[1]")]
         [CacheLookup]
         private IWebElement ApproveConnectionButton { get; set; }
 
@@ -50,7 +50,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement ConnectionStateText { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[3]/div/div/div/button[3]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div/ul/li/div/div[4]/div/div/div[2]/button")]
         [CacheLookup]
         private IWebElement RemoveConnectionButton { get; set; }
        
@@ -72,16 +72,21 @@ namespace UnitTestProject3.PageObjects
             ActualAlertText = Alert.Text;
             Assert.AreEqual(userData.ExpectedResponseToConnectionRequest, ActualAlertText);
             Alert.Accept();
-            Colloborator.WaitUntilElementToBeClickable();
-            Colloborator.Click();
-            ConnectionStateText.WaitUntilTextToBePresentInElement("Waiting for approval");
+            //Colloborator.WaitUntilElementToBeClickable();
+            //Colloborator.Click();
+            //ConnectionStateText.WaitUntilTextToBePresentInElement("Waiting for approval");
         }
         public void ApproveConnectionRequestAndRemoveConnection()
         {
-            Colloborator.WaitUntilElementToBeClickable();
-            Colloborator.Click();
+            //Colloborator.WaitUntilElementToBeClickable();
+            //Colloborator.Click();
+            ApproveConnectionButton.WaitUntilElementToBeClickable();
             ApproveConnectionButton.Click();
-            ConnectionStateText.WaitUntilTextToBePresentInElement("Active");
+            //ApproveConnectionButton.Click();
+            //ConnectionStateText.WaitUntilTextToBePresentInElement("Active");
+            //Extensions.Extensions.WaitUntilElementExists
+            RemoveConnectionButton.WaitUntilElementToBeClickable();
+            RemoveConnectionButton.Click();
             RemoveConnectionButton.Click();
             BrowserFactory.InitAlert();
             Alert = BrowserFactory.InitAlert();

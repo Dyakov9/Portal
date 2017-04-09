@@ -23,7 +23,7 @@ namespace TestCases
             Page.Login.LoginToAppliction("Lab");
             Page.IntegrationsPage.GoToConnectionsPage();
             Page.ConnectionsPage.ApproveConnectionRequestAndRemoveConnection();
-            BrowserFactory.QuitBrowser();
+            //BrowserFactory.QuitBrowser();
         }
     }
 }
