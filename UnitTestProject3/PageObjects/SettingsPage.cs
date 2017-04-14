@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
+using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
@@ -10,28 +12,28 @@ namespace PageObjects
 {
     public class SettingsPage
     {
-        
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/button")]
+
+        [FindsBy(How = How.CssSelector, Using = "button[class='button edit-user-information__button']")]
         [CacheLookup]
         private IWebElement EditAccoutInformationButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div[3]/table/tbody/tr[7]/td[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[2]/div/div[2]")]
         [CacheLookup]
         private IWebElement AccountNameResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div[3]/table/tbody/tr[8]/td[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[3]/div/div[2]")]
         [CacheLookup]
         private IWebElement AddressResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div[3]/table/tbody/tr[9]/td[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[4]/div/div[2]")]
         [CacheLookup]
         private IWebElement PhoneNumberResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div[3]/table/tbody/tr[10]/td[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[5]/div/div[2]")]
         [CacheLookup]
         private IWebElement DongleResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div[3]/table/tbody/tr[12]/td[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[3]/div/div[2]/div/div[2]")]
         [CacheLookup]
         private IWebElement NameResult { get; set; }
 
@@ -74,15 +76,23 @@ namespace PageObjects
 
         public void EditAccountInformation()
         {
-            AccountNameResult.WaitUntilTextToBePresentInElement("UiTestClinic@spam4.me");
-            AddressResult.WaitUntilTextToBePresentInElement("Long, LA, 111, Denmark");
-            PhoneNumberResult.WaitUntilTextToBePresentInElement( "123");
-            DongleResult.WaitUntilTextToBePresentInElement("92295796");
-            NameResult.WaitUntilTextToBePresentInElement( "John Big");
+            var modifier = "Modified";
+            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["AccountName"]);
+            AddressResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Address"]);
+            PhoneNumberResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["PhoneNumber"]);
+            DongleResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Dongle"]);
+            NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
+            string[] addressSplittedParts = ConfigurationManager.AppSettings["Address"].Split(new[] {", "},StringSplitOptions.None);
+            string[] nameSplittedParts = ConfigurationManager.AppSettings["Name"].Split();
             EditAccoutInformationButton.WaitUntilElementToBeClickable();
             EditAccoutInformationButton.Click();
-            AccountName.EnterText("UiTestClinic2@spam4.me");
-           // FirstName.
+            AccountName.EnterText(modifier + ConfigurationManager.AppSettings["AccountName"]);
+            StreetAddress.EnterText(modifier + addressSplittedParts[0]);
+            City.EnterText(modifier + addressSplittedParts[1]);
+            PostalCode.EnterText(modifier + addressSplittedParts[2]);
+            
+            FirstName.EnterText(modifier + nameSplittedParts[0]);
+            LastName.EnterText(modifier + nameSplittedParts[1]);
         }
     }
 }

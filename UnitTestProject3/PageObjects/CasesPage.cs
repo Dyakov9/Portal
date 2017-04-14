@@ -14,15 +14,15 @@ namespace UnitTestProject3.PageObjects
 {
     public class CasesPage
     {
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div[1]/div/div[1]/input")]
+        [FindsBy(How = How.CssSelector, Using = "input[type=search]")]
         [CacheLookup]
         private IWebElement SearchField { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div[1]/div/div[1]/button")]
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='searchForCases()']")]
         [CacheLookup]
         private IWebElement SearchButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[3]/dl/dd[2]")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[1]/div[2]/dl/dd[2]")]
         [CacheLookup]
         private IWebElement CaseId { get; set; }
 
@@ -103,6 +103,7 @@ namespace UnitTestProject3.PageObjects
         public void AddCommentWithImage(string keyName)
         {
            var userData = ExcelDataAccess.GetTestData(keyName);
+           Search("Clinic");
            FirstImage.WaitUntilElementToBeClickable();
            CommentTab.Click();
            CommentField.EnterText(userData.Text);
