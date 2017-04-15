@@ -9,6 +9,7 @@ using WrapperFactory;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 
+
 namespace UnitTestProject3.Extensions
 {
         public static class Extensions
@@ -74,6 +75,13 @@ namespace UnitTestProject3.Extensions
         public static void MoveToElement(this IWebElement element)
         {
             builder = new Actions(BrowserFactory.Driver);
+            builder.MoveToElement(element).Click().Build().Perform();
+            //builder.MoveToElement(secondElement).Click().Build().Perform();
+        }
+
+        public static void SelectItem(this IWebElement element)
+        {
+            //Select select = new Select();
             builder.MoveToElement(element).Click().Build().Perform();
             //builder.MoveToElement(secondElement).Click().Build().Perform();
         }
