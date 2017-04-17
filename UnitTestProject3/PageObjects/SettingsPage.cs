@@ -90,7 +90,9 @@ namespace PageObjects
             StreetAddress.EnterText(modifier + addressSplittedParts[0]);
             City.EnterText(modifier + addressSplittedParts[1]);
             PostalCode.EnterText(modifier + addressSplittedParts[2]);
-            
+            Country.WaitUntilTextToBePresentInElement("Denmark");
+            Country.SelectItem("Croatia");
+            PhoneNumber.EnterText(modifier + ConfigurationManager.AppSettings["PhoneNumber"]);
             FirstName.EnterText(modifier + nameSplittedParts[0]);
             LastName.EnterText(modifier + nameSplittedParts[1]);
         }

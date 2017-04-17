@@ -14,7 +14,7 @@ namespace UnitTestProject3.PageObjects
 
         private string ActualAlertText { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div/button")]
+        [FindsBy(How = How.CssSelector, Using = "button[class=button][ng-click='ctrl.openModal()']")]
         [CacheLookup]
         private IWebElement AddConnectionButton { get; set; }
 
@@ -42,19 +42,19 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement Colloborator { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div/ul/li/div/div[4]/div/div/div[1]/button[1]")]
+        [FindsBy(How = How.CssSelector, Using = "img[alt='Approve connection']")]
         [CacheLookup]
         private IWebElement ApproveConnectionButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[3]/div/div/h3")]
+        [FindsBy(How = How.CssSelector, Using = "span[class='ng-binding active']")]
         [CacheLookup]
         private IWebElement ConnectionStateText { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[1]/div/ul/li/div/div[4]/div/div/div[2]/button")]
+        [FindsBy(How = How.CssSelector, Using = "img[alt='Remove connection']")]
         [CacheLookup]
         private IWebElement RemoveConnectionButton { get; set; }
        
-       
+      
 
         public void SendConnectionRequest(string keyName)
         {
@@ -72,28 +72,22 @@ namespace UnitTestProject3.PageObjects
             ActualAlertText = Alert.Text;
             Assert.AreEqual(userData.ExpectedResponseToConnectionRequest, ActualAlertText);
             Alert.Accept();
-            //Colloborator.WaitUntilElementToBeClickable();
-            //Colloborator.Click();
-            //ConnectionStateText.WaitUntilTextToBePresentInElement("Waiting for approval");
+            
         }
         public void ApproveConnectionRequestAndRemoveConnection()
         {
-            //Colloborator.WaitUntilElementToBeClickable();
-            //Colloborator.Click();
+            var connectionStateCssSelector = "span[class='ng-binding active']";
             ApproveConnectionButton.WaitUntilElementToBeClickable();
             ApproveConnectionButton.Click();
-            //ApproveConnectionButton.Click();
-            //ConnectionStateText.WaitUntilTextToBePresentInElement("Active");
-            //Extensions.Extensions.WaitUntilElementExists
+            ConnectionStateText.WaitUntilElementToBeClickable();
             RemoveConnectionButton.WaitUntilElementToBeClickable();
-            RemoveConnectionButton.Click();
             RemoveConnectionButton.Click();
             BrowserFactory.InitAlert();
             Alert = BrowserFactory.InitAlert();
             ActualAlertText = Alert.Text;
             Assert.AreEqual("This action will remove the connection and cannot be undone. Would you like to proceed?", ActualAlertText);
             Alert.Accept();
-            Extensions.Extensions.WaitUntilElementIsInvisible(By.XPath("/html/body/div[3]/div/div/div[2]/div[1]/div/ul/li/div/div[1]"));
+            Extensions.Extensions.WaitUntilElementIsInvisible(By.CssSelector(connectionStateCssSelector));
         }
 
 

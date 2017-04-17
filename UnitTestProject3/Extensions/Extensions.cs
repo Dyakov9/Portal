@@ -10,6 +10,7 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
 
 
+
 namespace UnitTestProject3.Extensions
 {
         public static class Extensions
@@ -25,7 +26,7 @@ namespace UnitTestProject3.Extensions
 
         public static void WaitUntilElementToBeClickable(this IWebElement element)
         {
-            BrowserFactory.Wait.Until(ExpectedConditions.ElementToBeClickable(element));
+            BrowserFactory.Wait.Until(ExpectedConditions. ElementToBeClickable(element));
         }
 
         public static void WaitUntilElementExists(By locator)
@@ -79,11 +80,12 @@ namespace UnitTestProject3.Extensions
             //builder.MoveToElement(secondElement).Click().Build().Perform();
         }
 
-        public static void SelectItem(this IWebElement element)
+        public static void SelectItem(this IWebElement element, string text)
         {
-            //Select select = new Select();
-            builder.MoveToElement(element).Click().Build().Perform();
-            //builder.MoveToElement(secondElement).Click().Build().Perform();
+            SelectElement select = new SelectElement(element);
+            //element.WaitUntilTextToBePresentInElement(text);
+            select.SelectByText(text);
+            
         }
     }
 }
