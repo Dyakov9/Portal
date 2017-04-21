@@ -66,11 +66,11 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement PdfTab { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]/div[1]/a/input")]
+        [FindsBy(How = How.CssSelector, Using = "label[class='btn-choose-file']")]
         [CacheLookup]
         private IWebElement ChoosePdfFileButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[2]/div[1]/button")]
+        [FindsBy(How = How.CssSelector, Using = "button[class='uploadFileButton']")]
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
@@ -118,6 +118,7 @@ namespace UnitTestProject3.PageObjects
             Search("Clinic");
             PdfTab.WaitUntilElementToBeClickable();
             PdfTab.Click();
+            ChoosePdfFileButton.WaitUntilElementToBeClickable();
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();
             Toaster.WaitUntilTextToBePresentInElement( "You have successfully uploaded the file!");
