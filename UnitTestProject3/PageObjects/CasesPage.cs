@@ -66,7 +66,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement PdfTab { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "label[class='btn-choose-file']")]
+        [FindsBy(How = How.Id, Using = "pdfFileToUpload")]
         [CacheLookup]
         private IWebElement ChoosePdfFileButton { get; set; }
 
@@ -74,11 +74,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
-        [FindsBy(How = How.LinkText, Using = "AaZz059Kl.pdf")]
-        [CacheLookup]
-        private IWebElement PdfFileLink { get; set; }
-
-
+       
         public void Search(string keyName)
         {
             SearchField.WaitUntilElementToBeClickable();
@@ -118,7 +114,6 @@ namespace UnitTestProject3.PageObjects
             Search("Clinic");
             PdfTab.WaitUntilElementToBeClickable();
             PdfTab.Click();
-            ChoosePdfFileButton.WaitUntilElementToBeClickable();
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();
             Toaster.WaitUntilTextToBePresentInElement( "You have successfully uploaded the file!");

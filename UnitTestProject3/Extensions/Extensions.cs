@@ -13,7 +13,7 @@ using OpenQA.Selenium.Interactions;
 
 namespace UnitTestProject3.Extensions
 {
-        public static class Extensions
+    public static class Extensions
 
     {
         public static Actions builder { get; set; }
@@ -26,13 +26,14 @@ namespace UnitTestProject3.Extensions
 
         public static void WaitUntilElementToBeClickable(this IWebElement element)
         {
-            BrowserFactory.Wait.Until(ExpectedConditions. ElementToBeClickable(element));
+            BrowserFactory.Wait.Until(ExpectedConditions.ElementToBeClickable(element));
         }
 
         public static void WaitUntilElementExists(By locator)
         {
             BrowserFactory.Wait.Until(ExpectedConditions.ElementExists(locator));
         }
+
         public static void WaitUntilElementIsVisible(By locator)
         {
             BrowserFactory.Wait.Until(ExpectedConditions.ElementIsVisible(locator));
@@ -67,7 +68,7 @@ namespace UnitTestProject3.Extensions
         {
             return BrowserFactory.Driver.Url;
         }
-       
+
         public static void WaitUntilUrlToBe(string text)
         {
             BrowserFactory.Wait.Until(ExpectedConditions.UrlToBe(text));
@@ -75,17 +76,25 @@ namespace UnitTestProject3.Extensions
 
         public static void MoveToElement(this IWebElement element)
         {
-            builder = new Actions(BrowserFactory.Driver);
-            builder.MoveToElement(element).Click().Build().Perform();
-            //builder.MoveToElement(secondElement).Click().Build().Perform();
+            // builder = new Actions(BrowserFactory.Driver);
+            Actions actions = new Actions(BrowserFactory.Driver);
+            actions.MoveToElement(element);
+            actions.Click();
+            actions.SendKeys("Some Name");
+            actions.Build().Perform();
         }
+
+        //builder.MoveToElement(element).Click().SendKeys("fsd").Build().Perform();
+
+
+
 
         public static void SelectItem(this IWebElement element, string text)
         {
             SelectElement select = new SelectElement(element);
-            //element.WaitUntilTextToBePresentInElement(text);
             select.SelectByText(text);
-            
+
         }
     }
 }
+

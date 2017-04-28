@@ -25,15 +25,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement AddressResult { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[4]/div/div[2]")]
-        [CacheLookup]
-        private IWebElement PhoneNumberResult { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[2]/div/div[5]/div/div[2]")]
-        [CacheLookup]
-        private IWebElement DongleResult { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[3]/div/div[2]/div/div[2]")]
+       [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[3]/div/div[2]/div/div[2]")]
         [CacheLookup]
         private IWebElement NameResult { get; set; }
 
@@ -45,56 +37,59 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement FirstName { get; set; }
 
-        [FindsBy(How = How.Name, Using = "lastName")]
-        [CacheLookup]
-        private IWebElement LastName { get; set; }
-
-        [FindsBy(How = How.Name, Using = "dongleNumber")]
-        [CacheLookup]
-        private IWebElement DongleNumber { get; set; }
-
-        [FindsBy(How = How.Name, Using = "addressLine")]
-        [CacheLookup]
-        private IWebElement StreetAddress { get; set; }
-
-        [FindsBy(How = How.Name, Using = "city")]
-        [CacheLookup]
-        private IWebElement City { get; set; }
-
-        [FindsBy(How = How.Name, Using = "country")]
+       [FindsBy(How = How.Name, Using = "country")]
         [CacheLookup]
         private IWebElement Country { get; set; }
 
-        [FindsBy(How = How.Name, Using = "postalCode")]
+       [FindsBy(How = How.CssSelector, Using = "button[class='large-6 columns save-user-information__button']")]
         [CacheLookup]
-        private IWebElement PostalCode { get; set; }
+        private IWebElement SaveChangesButton { get; set; }
 
-        [FindsBy(How = How.Name, Using = "phoneNumber")]
-        [CacheLookup]
-        private IWebElement PhoneNumber { get; set; }
+       [FindsBy(How = How.CssSelector, Using = "button[class='edit-user-information__logo__edit-logo']")]
+       [CacheLookup]
+       private IWebElement ChangeLogoButton { get; set; }
+
+       [FindsBy(How = How.Id, Using = "userLogoToUpload")]
+       [CacheLookup]
+       private IWebElement UploadLogoButton { get; set; }
+
+       [FindsBy(How = How.ClassName, Using = "uploadFileButton")]
+       [CacheLookup]
+       private IWebElement UploadLogoOkButton { get; set; }
+
+       [FindsBy(How = How.CssSelector, Using = "div[class='ng-binding ng-scope']")]
+       [CacheLookup]
+       private IWebElement UpdatinglogoMessage { get; set; } 
+
 
 
         public void EditAccountInformation()
         {
             var modifier = "Modified";
+            var modifiedCountry = "Croatia";
             AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["AccountName"]);
-            AddressResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Address"]);
-            PhoneNumberResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["PhoneNumber"]);
-            DongleResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Dongle"]);
+            AddressResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
             NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
-            string[] addressSplittedParts = ConfigurationManager.AppSettings["Address"].Split(new[] {", "},StringSplitOptions.None);
-            string[] nameSplittedParts = ConfigurationManager.AppSettings["Name"].Split();
             EditAccoutInformationButton.WaitUntilElementToBeClickable();
             EditAccoutInformationButton.Click();
+            ChangeLogoButton.Click();
+            UploadLogoButton.SendKeys(ConfigurationManager.AppSettings["LogoFilePath"]);
+            UploadLogoOkButton.Click();
             AccountName.EnterText(modifier + ConfigurationManager.AppSettings["AccountName"]);
-            StreetAddress.EnterText(modifier + addressSplittedParts[0]);
-            City.EnterText(modifier + addressSplittedParts[1]);
-            PostalCode.EnterText(modifier + addressSplittedParts[2]);
-            Country.WaitUntilTextToBePresentInElement("Denmark");
-            Country.SelectItem("Croatia");
-            PhoneNumber.EnterText(modifier + ConfigurationManager.AppSettings["PhoneNumber"]);
-            FirstName.EnterText(modifier + nameSplittedParts[0]);
-            LastName.EnterText(modifier + nameSplittedParts[1]);
+            Country.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
+            Country.SelectItem(modifiedCountry);
+            FirstName.EnterText(modifier + ConfigurationManager.AppSettings["Name"]);
+            SaveChangesButton.Click();
+            AccountNameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["AccountName"]);
+            AddressResult.WaitUntilTextToBePresentInElement(modifiedCountry);
+            NameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["Name"]);
+            EditAccoutInformationButton.Click();
+            AccountName.EnterText(ConfigurationManager.AppSettings["AccountName"]);
+            Country.WaitUntilTextToBePresentInElement(modifiedCountry);
+            Country.SelectItem(ConfigurationManager.AppSettings["Country"]);
+            FirstName.EnterText(ConfigurationManager.AppSettings["Name"]);
+            SaveChangesButton.Click();
+            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["AccountName"]);
         }
     }
 }

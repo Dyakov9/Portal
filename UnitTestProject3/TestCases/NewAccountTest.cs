@@ -15,11 +15,7 @@ namespace TestCases
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.GoToCreateAccountUserPage();
-            Page.CreateAccountUser.EnterLoginInfo();
-            Page.CreateAccountUser.EnterAccountInfo();
-            Page.CreateAccountUser.EnterDongleNumber();
-            Page.CreateAccountUser.ChooseRole();
-            Page.CreateAccountUser.CreateAccount();
+            Page.CreateAccountUser.CreateNewAccount();
             BrowserFactory.QuitBrowser();
         }
     }

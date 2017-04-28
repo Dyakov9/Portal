@@ -1,8 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
+using UnitTestProject3.Extensions;
 
 
 namespace PageObjects
@@ -10,7 +12,7 @@ namespace PageObjects
     public class CreateAccountUserPage
     {
 
-        [FindsBy(How = How.Name, Using = "Email")]
+        [FindsBy(How = How.CssSelector, Using = "input[ng-model='userModel.Email']")]
         [CacheLookup]
         private IWebElement Email { get; set; }
 
@@ -58,7 +60,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement PhoneNumber { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/form/div[3]/div[1]/div[8]/div/div[2]/button")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div/form/div[3]/div[1]/div[8]/div/div[2]/button")]
         [CacheLookup]
         private IWebElement NextButton2Step { get; set; }
 
@@ -66,11 +68,11 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement DongleNumber { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/form/div[4]/div[1]/div[2]/div/div[2]/button")]
-        [CacheLookup]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div/form/div[4]/div[1]/div[2]/div/div[2]/button")]
+        [CacheLookup]                      
         private IWebElement NextButton3Step { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/form/div[5]/div[1]/div[1]/div/label")]
+        [FindsBy(How = How.CssSelector, Using = "label[for='practice']")]
         [CacheLookup]
         private IWebElement PracticeToggleButton { get; set; }
 
@@ -83,52 +85,32 @@ namespace PageObjects
         private IWebElement CreateAccountButton { get; set; }
 
         
-        public void EnterLoginInfo()
+        public void CreateNewAccount()
         {
-            Email.Clear();
-            Email.SendKeys("Testclinic44444444@3shapecommunicate.com");
-            Name.Clear();
-            Name.SendKeys("Testclinic444");
-            Password.Clear();
-            Password.SendKeys("Testclinic444@3shapecommunicate.com");
-            PasswordRepeated.Clear();
-            PasswordRepeated.SendKeys("Testclinic444@3shapecommunicate.com");
+            Email.WaitUntilElementToBeClickable();           
+            Email.EnterText(ConfigurationManager.AppSettings["Email"]); 
+            Password.EnterText(ConfigurationManager.AppSettings["Email"]);
+            PasswordRepeated.EnterText(ConfigurationManager.AppSettings["Email"]);
             NextButton1Step.Click();
+            Name.EnterText(ConfigurationManager.AppSettings["Email"]);
+            Country.SelectItem("United States");
+            State.SelectItem("Alaska");
+            City.SendKeys(ConfigurationManager.AppSettings["Email"]);
+            StreetAddress.SendKeys(ConfigurationManager.AppSettings["Email"]);
+            PhoneNumber.EnterText("518-457-5181");
+            NextButton2Step.WaitUntilElementToBeClickable();
+            NextButton2Step.Click();
+            DongleNumber.EnterText("945390570");
+            NextButton3Step.WaitUntilElementToBeClickable();
+            Thread.Sleep(300);
+            NextButton3Step.Click();
+            PracticeToggleButton.Click();
             
         }
-       public void EnterAccountInfo()
+       
+       public void CreateAccount()
         {
-            ContactName.Clear();
-            ContactName.SendKeys("Testclinic444");
-            SelectElement selectCountry = new SelectElement(Country);
-            selectCountry.SelectByText("United States");
-            SelectElement selectState = new SelectElement(State);
-            selectState.SelectByText("Alaska");
-            City.Clear();
-            City.SendKeys("NY");
-            StreetAddress.Clear();
-            StreetAddress.SendKeys("Manhattan");
-            PostalCode.Clear();
-            PostalCode.SendKeys("10002");
-            PhoneNumber.Clear();
-            PhoneNumber.SendKeys("518-457-5181");
-            NextButton2Step.Click();
-                   }
-        public void EnterDongleNumber()
-        {
-            DongleNumber.Clear();
-            DongleNumber.SendKeys("945390570");
-            Thread.Sleep(1000);
-            NextButton3Step.Click();
-        }
-        public void ChooseRole()
-        {
-            PracticeToggleButton.Click();
-            LabToggleButton.Click();
-        }
-        public void CreateAccount()
-        {
-            CreateAccountButton.Click();
+           // CreateAccountButton.Click();
            // Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
         }
 
