@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TestDataAccess;
 using WrapperFactory;
 using UnitTestProject3.Extensions;
 
@@ -31,12 +30,11 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SoftwareUser { get; set; }
 
-        public void LoginToAppliction (string keyName)
+        public void LoginToAppliction (string accountName)
         {
             Email.WaitUntilElementToBeClickable();
-            var userData = ExcelDataAccess.GetTestData(keyName);
-            Email.EnterText(userData.Email);
-            Password.EnterText(userData.Password);
+            Email.EnterText(accountName);
+            Password.EnterText(accountName);
             Login.Submit();
             Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
                     }

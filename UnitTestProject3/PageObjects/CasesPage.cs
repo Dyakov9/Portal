@@ -6,9 +6,9 @@ using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
 using PageObjects;
 using System.Threading;
-using TestDataAccess;
 using WrapperFactory;
 using UnitTestProject3.Extensions;
+using System.Configuration;
 
 namespace UnitTestProject3.PageObjects
 {
@@ -18,7 +18,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SearchField { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "button[ng-click='searchForCases()']")]
+        [FindsBy(How = How.Id, Using = "searchForCasesButton")]
         [CacheLookup]
         private IWebElement SearchButton { get; set; }
 
@@ -75,43 +75,41 @@ namespace UnitTestProject3.PageObjects
         private IWebElement UploadPdfFileButton { get; set; }
 
        
-        public void Search(string keyName)
+        public void Search()
         {
             SearchField.WaitUntilElementToBeClickable();
-            var userData = ExcelDataAccess.GetTestData(keyName);
-            SearchField.EnterText(userData.CaseId);
+            SearchField.EnterText(ConfigurationManager.AppSettings["CaseId"]);
             SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
             DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
-            CaseId.WaitUntilTextToBePresentInElement( userData.CaseId);
+            CaseId.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["CaseId"]);
             
         }
         public void VerifyImagesAreDisplayed ()
         {
-            Search("Clinic");
+            Search();
             FirstImage.WaitUntilElementToBeClickable();
             ImageCarouselForwardButton.WaitUntilElementToBeClickable();
             ImageCarouselForwardButton.Click();
             SecondImage.WaitUntilElementToBeClickable();
         }
 
-        public void AddCommentWithImage(string keyName)
+        public void AddCommentWithImage()
         {
-           var userData = ExcelDataAccess.GetTestData(keyName);
-           Search("Clinic");
+           Search();
            FirstImage.WaitUntilElementToBeClickable();
            CommentTab.Click();
-           CommentField.EnterText(userData.Text);
-           AddImageButton.SendKeys(userData.FilePath);
+           CommentField.EnterText(ConfigurationManager.AppSettings["Country"]);
+           AddImageButton.SendKeys(ConfigurationManager.AppSettings["LogoFilePath"]);
            SendCommentButton.WaitUntilElementToBeClickable();
            SendCommentButton.Click();
-           Toaster.WaitUntilTextToBePresentInElement( userData.AddCommentWithImageResponse);
+           Toaster.WaitUntilTextToBePresentInElement("comment with image added");
 
         }
         public void UploadPdfFile(string path)
         {
-            Search("Clinic");
+            Search();
             PdfTab.WaitUntilElementToBeClickable();
             PdfTab.Click();
             ChoosePdfFileButton.SendKeys(path);

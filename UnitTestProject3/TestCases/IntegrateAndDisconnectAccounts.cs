@@ -14,12 +14,12 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.IntegrationsPage.IntegrateAccounts();
             BrowserFactory.QuitBrowser();
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.IntegrationsPage.DisconnectAccounts();
             BrowserFactory.QuitBrowser();
         }

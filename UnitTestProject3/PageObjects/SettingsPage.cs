@@ -4,7 +4,6 @@ using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TestDataAccess;
 using WrapperFactory;
 using UnitTestProject3.Extensions;
 
@@ -67,7 +66,7 @@ namespace PageObjects
         {
             var modifier = "Modified";
             var modifiedCountry = "Croatia";
-            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["AccountName"]);
+            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["ClinicAccount"]);
             AddressResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
             NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
             EditAccoutInformationButton.WaitUntilElementToBeClickable();
@@ -75,21 +74,21 @@ namespace PageObjects
             ChangeLogoButton.Click();
             UploadLogoButton.SendKeys(ConfigurationManager.AppSettings["LogoFilePath"]);
             UploadLogoOkButton.Click();
-            AccountName.EnterText(modifier + ConfigurationManager.AppSettings["AccountName"]);
+            AccountName.EnterText(modifier + ConfigurationManager.AppSettings["ClinicAccount"]);
             Country.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
             Country.SelectItem(modifiedCountry);
             FirstName.EnterText(modifier + ConfigurationManager.AppSettings["Name"]);
             SaveChangesButton.Click();
-            AccountNameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["AccountName"]);
+            AccountNameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["ClinicAccount"]);
             AddressResult.WaitUntilTextToBePresentInElement(modifiedCountry);
             NameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["Name"]);
             EditAccoutInformationButton.Click();
-            AccountName.EnterText(ConfigurationManager.AppSettings["AccountName"]);
+            AccountName.EnterText(ConfigurationManager.AppSettings["ClinicAccount"]);
             Country.WaitUntilTextToBePresentInElement(modifiedCountry);
             Country.SelectItem(ConfigurationManager.AppSettings["Country"]);
             FirstName.EnterText(ConfigurationManager.AppSettings["Name"]);
             SaveChangesButton.Click();
-            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["AccountName"]);
+            AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["ClinicAccount"]);
         }
     }
 }

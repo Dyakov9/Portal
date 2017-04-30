@@ -102,7 +102,7 @@ namespace PageObjects
             NextButton2Step.Click();
             DongleNumber.EnterText("945390570");
             NextButton3Step.WaitUntilElementToBeClickable();
-            Thread.Sleep(300);
+            Thread.Sleep(500);
             NextButton3Step.Click();
             PracticeToggleButton.Click();
             

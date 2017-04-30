@@ -14,13 +14,13 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.IntegrationsPage.GoToConnectionsPage();
-            Page.ConnectionsPage.SendConnectionRequest("Lab");
+            Page.ConnectionsPage.SendConnectionRequest(ConfigurationManager.AppSettings["LabAccount"]);
             BrowserFactory.QuitBrowser();
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Lab");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["LabAccount"]);
             Page.IntegrationsPage.GoToConnectionsPage();
             Page.ConnectionsPage.ApproveConnectionRequestAndRemoveConnection();
             BrowserFactory.QuitBrowser();

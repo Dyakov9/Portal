@@ -13,7 +13,7 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URLSettingsPage"]);
             Page.SettingsPage.EditAccountInformation();
             BrowserFactory.QuitBrowser();

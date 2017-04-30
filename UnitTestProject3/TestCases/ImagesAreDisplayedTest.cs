@@ -13,7 +13,7 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.IntegrationsPage.GoToCasePage();
             Page.CasesPage.VerifyImagesAreDisplayed();
             BrowserFactory.QuitBrowser();

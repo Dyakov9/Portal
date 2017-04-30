@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.PageObjects;
-using TestDataAccess;
 using WrapperFactory;
 using UnitTestProject3.Extensions;
 
@@ -56,13 +55,12 @@ namespace UnitTestProject3.PageObjects
        
       
 
-        public void SendConnectionRequest(string keyName)
+        public void SendConnectionRequest(string accountName)
         {
-            var userData = ExcelDataAccess.GetTestData(keyName);
             AddConnectionButton.WaitUntilElementToBeClickable();
             AddConnectionButton.Click();
             FindColloboratorField.WaitUntilElementToBeClickable();
-            FindColloboratorField.EnterText(userData.Email);
+            FindColloboratorField.EnterText(accountName);
             FindColloboratorButton.Click();
             ColloboratorsName.WaitUntilElementToBeClickable();
             ColloboratorsName.Click();
@@ -70,7 +68,7 @@ namespace UnitTestProject3.PageObjects
             Extensions.Extensions.WaitUntilAlertIsPresent();
             Alert = BrowserFactory.InitAlert();
             ActualAlertText = Alert.Text;
-            Assert.AreEqual(userData.ExpectedResponseToConnectionRequest, ActualAlertText);
+            Assert.AreEqual("connection request was sent", ActualAlertText);
             Alert.Accept();
             
         }
