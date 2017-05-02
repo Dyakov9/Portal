@@ -14,9 +14,9 @@ namespace TestCases
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction("Clinic");
-            Page.IntegrationsPage.LogOut();
-            //BrowserFactory.QuitBrowser();
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
+            //Page.IntegrationsPage.LogOut();
+           // BrowserFactory.QuitBrowser();
         }
     }
 }

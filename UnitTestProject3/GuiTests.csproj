@@ -87,7 +87,7 @@
     <Compile Include="TestCases\IntegrateAndDisconnectAccounts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCases\LogOutTest.cs" />
-    <Compile Include="TestCases\NewAccount3ShapeUserTest.cs" />
+    <Compile Include="TestCases\CreateDelete3ShapeUserTest.cs" />
     <Compile Include="TestCases\SearchCaseAndUploadPdfFileTest.cs" />
     <Compile Include="WrapperFactory\BrowserFactory.cs" />
   </ItemGroup>

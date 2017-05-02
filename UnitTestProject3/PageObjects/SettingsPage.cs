@@ -58,10 +58,17 @@ namespace PageObjects
 
        [FindsBy(How = How.CssSelector, Using = "div[class='ng-binding ng-scope']")]
        [CacheLookup]
-       private IWebElement UpdatinglogoMessage { get; set; } 
+       private IWebElement UpdatinglogoMessage { get; set; }
 
+       [FindsBy(How = How.CssSelector, Using = "button[title='Delete account']")]
+       [CacheLookup]
+       private IWebElement DeleteAccountButton { get; set; }
 
+       [FindsBy(How = How.CssSelector, Using = "button[ng-click='deleteAccount()']")]
+       [CacheLookup]
+       private IWebElement DeleteAccountConfirmationButton { get; set; }
 
+        
         public void EditAccountInformation()
         {
             var modifier = "Modified";
@@ -89,6 +96,15 @@ namespace PageObjects
             FirstName.EnterText(ConfigurationManager.AppSettings["Name"]);
             SaveChangesButton.Click();
             AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["ClinicAccount"]);
+        }
+        public void DeleteAccount()
+        {
+            EditAccoutInformationButton.WaitUntilElementToBeClickable();
+            EditAccoutInformationButton.Click();
+            DeleteAccountButton.Click();
+            DeleteAccountConfirmationButton.WaitUntilElementToBeClickable();
+            DeleteAccountConfirmationButton.Click();
+            Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }
 }

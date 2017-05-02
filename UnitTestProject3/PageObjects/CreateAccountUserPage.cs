@@ -80,7 +80,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement LabToggleButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/form/div[5]/div[1]/div[3]/div/div[2]/button")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div/form/div[5]/div[1]/div[3]/div/div[2]/button")]
         [CacheLookup]
         private IWebElement CreateAccountButton { get; set; }
 
@@ -88,31 +88,27 @@ namespace PageObjects
         public void CreateNewAccount()
         {
             Email.WaitUntilElementToBeClickable();           
-            Email.EnterText(ConfigurationManager.AppSettings["Email"]); 
-            Password.EnterText(ConfigurationManager.AppSettings["Email"]);
-            PasswordRepeated.EnterText(ConfigurationManager.AppSettings["Email"]);
+            Email.EnterText(ConfigurationManager.AppSettings["NewAccount"]); 
+            Password.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
+            PasswordRepeated.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
             NextButton1Step.Click();
-            Name.EnterText(ConfigurationManager.AppSettings["Email"]);
+            Name.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
             Country.SelectItem("United States");
             State.SelectItem("Alaska");
-            City.SendKeys(ConfigurationManager.AppSettings["Email"]);
-            StreetAddress.SendKeys(ConfigurationManager.AppSettings["Email"]);
+            City.SendKeys(ConfigurationManager.AppSettings["NewAccount"]);
+            StreetAddress.SendKeys(ConfigurationManager.AppSettings["NewAccount"]);
             PhoneNumber.EnterText("518-457-5181");
             NextButton2Step.WaitUntilElementToBeClickable();
             NextButton2Step.Click();
             DongleNumber.EnterText("945390570");
             NextButton3Step.WaitUntilElementToBeClickable();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             NextButton3Step.Click();
             PracticeToggleButton.Click();
-            
+            CreateAccountButton.Click();
+            Thread.Sleep(1000);
+
         }
        
-       public void CreateAccount()
-        {
-           // CreateAccountButton.Click();
-           // Assert.IsTrue(Page.IntegrationsPage.IntegrateAccountsButton.Displayed);
-        }
-
-       }
+             }
 }

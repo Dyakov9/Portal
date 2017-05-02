@@ -56,15 +56,15 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement IntegrationPageToaster { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/a")]
+        [FindsBy(How = How.CssSelector, Using = "a[class='profile ng-binding']")]
         [CacheLookup]
         private IWebElement ProfileMenu { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[2]/a")]
+        [FindsBy(How = How.CssSelector, Using = "a[ng-click='ctrl.logOff()']")]
         [CacheLookup]                         
         private IWebElement LogOutLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]")]
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/settings/']")]
         [CacheLookup]
         private IWebElement SettingsPageLink { get; set; }
 
@@ -84,12 +84,7 @@ namespace PageObjects
 
         public void GoToSettingsPage()
         {
-            //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-            //Thread.Sleep(1000);
             ProfileMenu.MoveToElement();
-            //Thread.Sleep(3000);
-            Extensions.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
-            SettingsPageLink.WaitUntilElementToBeClickable();
             SettingsPageLink.Click();
 
         }
@@ -121,14 +116,9 @@ namespace PageObjects
 
         public void LogOut()
         {
-            //BrowserFactory.WaitUntilElementToBeClickable(ProfileMenu);
-            //BrowserFactory.WaitUntilElementToBeClickable(IntegrateAccountsButton);
-           //BrowserFactory.MoveToElement(ProfileMenu);
-           Thread.Sleep(3000);
-            Extensions.WaitUntilElementIsVisible(By.XPath("/html/body/div[2]/div/nav/section/ul/div/li[5]/ul/li[1]/a"));
-            
+            ProfileMenu.MoveToElement();
             LogOutLink.Click();
-            //BrowserFactory.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
+            Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
     }
 }

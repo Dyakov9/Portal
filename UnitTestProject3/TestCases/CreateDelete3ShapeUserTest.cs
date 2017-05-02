@@ -7,15 +7,19 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-    public class NewAccount3ShapeUserTest
+    public class CreateDelete3ShapeUserTest
     {
         [TestMethod]
-        public void CreateNewAccount3ShapeUser()
+        public void CreateDelete3ShapeUser()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.GoToCreateAccountUserPage();
             Page.CreateAccountUser.CreateNewAccount();
+            BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["NewAccount"]);
+            Page.IntegrationsPage.GoToSettingsPage();
+            Page.SettingsPage.DeleteAccount();
             BrowserFactory.QuitBrowser();
         }
     }

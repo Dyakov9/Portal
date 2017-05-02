@@ -76,18 +76,10 @@ namespace UnitTestProject3.Extensions
 
         public static void MoveToElement(this IWebElement element)
         {
-            // builder = new Actions(BrowserFactory.Driver);
             Actions actions = new Actions(BrowserFactory.Driver);
-            actions.MoveToElement(element);
-            actions.Click();
-            actions.SendKeys("Some Name");
-            actions.Build().Perform();
+            actions.MoveToElement(element).Build().Perform();
+
         }
-
-        //builder.MoveToElement(element).Click().SendKeys("fsd").Build().Perform();
-
-
-
 
         public static void SelectItem(this IWebElement element, string text)
         {
