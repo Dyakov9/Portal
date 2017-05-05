@@ -68,13 +68,13 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SettingsPageLink { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='toggleNav']/li[5]/a")]
+        [FindsBy(How = How.ClassName, Using = "more")]
         [CacheLookup]
-        private IWebElement Profile { get; set; }
+        private IWebElement MoreItem { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//*[@id='toggleNav']/li[5]/ul/li[2]/a")]
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/userrole']")]
         [CacheLookup]
-        private IWebElement SettingsPageLink2 { get; set; }
+        private IWebElement UserRolePageLink { get; set; }
 
 
         public void GoToCasePage()
@@ -93,6 +93,7 @@ namespace PageObjects
         {
             ConnectionsPageLink.Click();
         }
+
         public void IntegrateAccounts()
         {
             IntegrateAccountsButton.WaitUntilElementToBeClickable();
@@ -120,5 +121,12 @@ namespace PageObjects
             LogOutLink.Click();
             Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
+       
+        public void GoToUserRolePage()
+        {
+            MoreItem.MoveToElement();
+            UserRolePageLink.Click();
+        }
+
     }
 }

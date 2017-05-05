@@ -75,11 +75,13 @@
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="PageObjects\CasesPage.cs" />
     <Compile Include="PageObjects\ConnectionsPage.cs" />
+    <Compile Include="PageObjects\UserRolePage.cs" />
     <Compile Include="PageObjects\CreateAccountUserPage.cs" />
     <Compile Include="PageObjects\IntegrationsPage.cs" />
     <Compile Include="PageObjects\LoginPage.cs" />
     <Compile Include="PageObjects\Page.cs" />
     <Compile Include="PageObjects\SettingsPage.cs" />
+    <Compile Include="TestCases\AddDeleteRoleTest.cs" />
     <Compile Include="TestCases\AddAproveRemoveConnectionTest.cs" />
     <Compile Include="TestCases\CommentWithImageIsAddedTest.cs" />
     <Compile Include="TestCases\EditAccountInformationTest.cs" />
