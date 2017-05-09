@@ -6,16 +6,16 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-   public class ImagesAreDisplayedTest
+    public class AddCommentWithImagesTest
     {
         [TestMethod]
-    public void ImagesAreDisplayed ()
+        public void AddCommentWithImages()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.IntegrationsPage.GoToCasePage();
-            Page.CasesPage.VerifyImagesAreDisplayed();
+            Page.CasesPage.AddCommentWithImage();
             BrowserFactory.QuitBrowser();
         }
     }

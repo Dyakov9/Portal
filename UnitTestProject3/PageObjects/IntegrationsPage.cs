@@ -76,6 +76,9 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement UserRolePageLink { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/admin']")]
+        [CacheLookup]
+        private IWebElement AdminPageLink { get; set; }
 
         public void GoToCasePage()
         {
@@ -126,6 +129,12 @@ namespace PageObjects
         {
             MoreItem.MoveToElement();
             UserRolePageLink.Click();
+        }
+
+        public void GoToAdminPage()
+        {
+            MoreItem.MoveToElement();
+            AdminPageLink.Click();
         }
 
     }

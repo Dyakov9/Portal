@@ -37,9 +37,9 @@ namespace PageObjects
         {
             get { return GetPage<SettingsPage>(); }
         }
-        public static UserRolePage UserRolePagePage
+        public static AdminPage AdminPage
         {
-            get { return GetPage<UserRolePage>(); }
+            get { return GetPage<AdminPage>(); }
         }
     }
 }
