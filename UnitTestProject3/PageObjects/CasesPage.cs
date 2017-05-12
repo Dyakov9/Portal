@@ -26,7 +26,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement CaseId { get; set; }
 
-        [FindsBy(How = How.ClassName, Using = "show-details")]
+        [FindsBy(How = How.CssSelector, Using = "button[class='show-details']")]
         [CacheLookup]
         private IWebElement DetailsButton { get; set; }
         
@@ -74,11 +74,15 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "input[placeholder='Start date']")]
+        [CacheLookup]
+        private IWebElement StartDateCalendar { get; set; }
        
         public void Search()
         {
             SearchField.WaitUntilElementToBeClickable();
             SearchField.EnterText(ConfigurationManager.AppSettings["CaseId"]);
+           // StartDateCalendar.SendKeys("01-03-2016");
             SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
             DetailsButton.WaitUntilElementToBeClickable();
