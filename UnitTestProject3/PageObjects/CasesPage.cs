@@ -30,7 +30,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement DetailsButton { get; set; }
         
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/ul/li[1]/img")]
+        [FindsBy(How = How.CssSelector, Using = "img[alt='3shape.png']")]
         [CacheLookup]
         private IWebElement FirstImage { get; set; }
 
@@ -38,7 +38,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement ImageCarouselForwardButton { get; set; }
                
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/ul/li[2]/img")]
+        [FindsBy(How = How.CssSelector, Using = "img[alt='Top.jpg']")]
         [CacheLookup]
         private IWebElement SecondImage { get; set; }
 
