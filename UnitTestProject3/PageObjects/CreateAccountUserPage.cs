@@ -28,15 +28,19 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement PasswordRepeated { get; set; }
 
+        [FindsBy(How = How.Name, Using = "FirstName")]
+        [CacheLookup]
+        private IWebElement FirstNameField { get; set; }
+
+        [FindsBy(How = How.Name, Using = "LastName")]
+        [CacheLookup]
+        private IWebElement LastNameField { get; set; }
+
         [FindsBy(How = How.TagName, Using = "button")]
         [CacheLookup]
         private IWebElement NextButton1Step { get; set; }
 
-        [FindsBy(How = How.Name, Using = "ContactName")]
-        [CacheLookup]
-        private IWebElement ContactName { get; set; }
-
-        [FindsBy(How = How.Name, Using = "country")]
+       [FindsBy(How = How.Name, Using = "country")]
         [CacheLookup]
         private IWebElement Country { get; set; }
 
@@ -52,11 +56,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement StreetAddress { get; set; }
 
-        [FindsBy(How = How.Name, Using = "PostalCode")]
-        [CacheLookup]
-        private IWebElement PostalCode { get; set; }
-
-        [FindsBy(How = How.Name, Using = "PhoneNumber")]
+       [FindsBy(How = How.Name, Using = "PhoneNumber")]
         [CacheLookup]
         private IWebElement PhoneNumber { get; set; }
 
@@ -76,11 +76,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement PracticeToggleButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/form/div[5]/div[1]/div[2]/div/label/span")]
-        [CacheLookup]
-        private IWebElement LabToggleButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div/form/div[5]/div[1]/div[3]/div/div[2]/button")]
+       [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div/form/div[5]/div[1]/div[3]/div/div[2]/button")]
         [CacheLookup]
         private IWebElement CreateAccountButton { get; set; }
 
@@ -91,6 +87,8 @@ namespace PageObjects
             Email.EnterText(ConfigurationManager.AppSettings["NewAccount"]); 
             Password.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
             PasswordRepeated.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
+            FirstNameField.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
+            LastNameField.EnterText(ConfigurationManager.AppSettings["NewAccount"]); 
             NextButton1Step.Click();
             Name.EnterText(ConfigurationManager.AppSettings["NewAccount"]);
             Country.SelectItem("United States");

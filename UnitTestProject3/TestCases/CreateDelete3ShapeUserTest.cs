@@ -18,7 +18,7 @@ namespace TestCases
             Page.CreateAccountUser.CreateNewAccount();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["NewAccount"]);
-            Page.IntegrationsPage.GoToSettingsPage();
+            Page.NavigationPage.GoToSettingsPage();
             Page.SettingsPage.DeleteAccount();
             BrowserFactory.QuitBrowser();
         }

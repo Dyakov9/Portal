@@ -25,17 +25,13 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement FoundUserResult { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "a[href='#/settings/UiTestClinic@spam4.me']")]
-        [CacheLookup]
-        private IWebElement UserSettingsLink { get; set; }
-
         public void GoToUserSettingsPage(string userEmail)
         {
             SearchUsersField.WaitUntilElementToBeClickable();
             SearchUsersField.EnterText(userEmail);
             SearchUsersButton.Click();
             FoundUserResult.WaitUntilTextToBePresentInElement(userEmail);
-            UserSettingsLink.Click();
+            FoundUserResult.Click();
 
         }
        

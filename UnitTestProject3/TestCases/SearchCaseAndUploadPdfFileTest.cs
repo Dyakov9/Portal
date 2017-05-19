@@ -14,7 +14,7 @@ namespace TestCases
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
-            Page.IntegrationsPage.GoToCasePage();
+            Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.UploadPdfFile(ConfigurationManager.AppSettings["PdfFilePath"]);
             BrowserFactory.QuitBrowser();
         }

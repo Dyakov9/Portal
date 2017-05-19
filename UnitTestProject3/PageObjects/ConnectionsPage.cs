@@ -33,15 +33,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement ConnectButton { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/ul/li[2]/a")]
-        [CacheLookup]
-        private IWebElement LogOutLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div/ul/li/div/div[1]")]
-        [CacheLookup]
-        private IWebElement Colloborator { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "img[alt='Approve connection']")]
+       [FindsBy(How = How.CssSelector, Using = "img[alt='Approve connection']")]
         [CacheLookup]
         private IWebElement ApproveConnectionButton { get; set; }
 
@@ -80,7 +72,6 @@ namespace UnitTestProject3.PageObjects
             ConnectionStateText.WaitUntilElementToBeClickable();
             RemoveConnectionButton.WaitUntilElementToBeClickable();
             RemoveConnectionButton.Click();
-            BrowserFactory.InitAlert();
             Alert = BrowserFactory.InitAlert();
             ActualAlertText = Alert.Text;
             Assert.AreEqual("This action will remove the connection and cannot be undone. Would you like to proceed?", ActualAlertText);

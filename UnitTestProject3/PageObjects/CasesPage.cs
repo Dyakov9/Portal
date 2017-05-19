@@ -29,20 +29,8 @@ namespace UnitTestProject3.PageObjects
         [FindsBy(How = How.CssSelector, Using = "button[class='show-details']")]
         [CacheLookup]
         private IWebElement DetailsButton { get; set; }
-        
-        [FindsBy(How = How.CssSelector, Using = "img[alt='3shape.png']")]
-        [CacheLookup]
-        private IWebElement FirstImage { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[1]/div[1]/div/span")]
-        [CacheLookup]
-        private IWebElement ImageCarouselForwardButton { get; set; }
-               
-        [FindsBy(How = How.CssSelector, Using = "img[alt='Top.jpg']")]
-        [CacheLookup]
-        private IWebElement SecondImage { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/ul/li[3]/span")]
+        [FindsBy(How = How.CssSelector, Using = "textarea[ng-model='messageText']")]
         [CacheLookup]
         private IWebElement CommentTab { get; set; }
 
@@ -74,15 +62,15 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "input[placeholder='Start date']")]
+        [FindsBy(How = How.Name, Using = "searchByCasesStates")]
         [CacheLookup]
-        private IWebElement StartDateCalendar { get; set; }
-       
+        private IWebElement SearchByCasesStatesDropDown { get; set; }
+
         public void Search()
         {
             SearchField.WaitUntilElementToBeClickable();
             SearchField.EnterText(ConfigurationManager.AppSettings["CaseId"]);
-           // StartDateCalendar.SendKeys("01-03-2016");
+            SearchByCasesStatesDropDown.SelectItem("Designed");
             SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
             DetailsButton.WaitUntilElementToBeClickable();
@@ -90,19 +78,11 @@ namespace UnitTestProject3.PageObjects
             CaseId.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["CaseId"]);
             
         }
-        public void VerifyImagesAreDisplayed ()
-        {
-            Search();
-            FirstImage.WaitUntilElementToBeClickable();
-            ImageCarouselForwardButton.WaitUntilElementToBeClickable();
-            ImageCarouselForwardButton.Click();
-            SecondImage.WaitUntilElementToBeClickable();
-        }
-
+       
         public void AddCommentWithImage()
         {
            Search();
-           FirstImage.WaitUntilElementToBeClickable();
+           CommentTab.WaitUntilElementToBeClickable();
            CommentTab.Click();
            CommentField.EnterText(ConfigurationManager.AppSettings["Country"]);
            AddImageButton.SendKeys(ConfigurationManager.AppSettings["LogoFilePath"]);

@@ -11,6 +11,8 @@ namespace PageObjects
 {
     public class SettingsPage
     {
+        String modifier = "Modified";
+        String modifiedCountry = "Croatia";
 
         [FindsBy(How = How.CssSelector, Using = "button[class='button edit-user-information__button']")]
         [CacheLookup]
@@ -24,7 +26,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement AddressResult { get; set; }
 
-       [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[3]/div/div[2]/div/div[2]")]
+       [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[2]/div[1]/div/fieldset[4]/div/div[2]/div/div[2]")]
         [CacheLookup]
         private IWebElement NameResult { get; set; }
 
@@ -56,11 +58,7 @@ namespace PageObjects
        [CacheLookup]
        private IWebElement UploadLogoOkButton { get; set; }
 
-       [FindsBy(How = How.CssSelector, Using = "div[class='ng-binding ng-scope']")]
-       [CacheLookup]
-       private IWebElement UpdatinglogoMessage { get; set; }
-
-       [FindsBy(How = How.CssSelector, Using = "button[title='Delete account']")]
+      [FindsBy(How = How.CssSelector, Using = "button[title='Delete account']")]
        [CacheLookup]
        private IWebElement DeleteAccountButton { get; set; }
 
@@ -68,14 +66,19 @@ namespace PageObjects
        [CacheLookup]
        private IWebElement DeleteAccountConfirmationButton { get; set; }
 
+       [FindsBy(How = How.CssSelector, Using = "li[ng-click='showAccountInfoOnly = false; showCompanyInfoOnly = true; showNotificationsOnly = false']")]
+       [CacheLookup]
+       private IWebElement AccountInfoTab { get; set; }
+
+
         
-        public void EditAccountInformation()
+        public void EditCompanyInformation()
         {
-            var modifier = "Modified";
-            var modifiedCountry = "Croatia";
+           
+            AccountInfoTab.WaitUntilElementToBeClickable();
+            AccountInfoTab.Click();
             AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["ClinicAccount"]);
             AddressResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
-            NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
             EditAccoutInformationButton.WaitUntilElementToBeClickable();
             EditAccoutInformationButton.Click();
             ChangeLogoButton.Click();
@@ -84,19 +87,31 @@ namespace PageObjects
             AccountName.EnterText(modifier + ConfigurationManager.AppSettings["ClinicAccount"]);
             Country.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Country"]);
             Country.SelectItem(modifiedCountry);
-            FirstName.EnterText(modifier + ConfigurationManager.AppSettings["Name"]);
             SaveChangesButton.Click();
             AccountNameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["ClinicAccount"]);
             AddressResult.WaitUntilTextToBePresentInElement(modifiedCountry);
-            NameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["Name"]);
             EditAccoutInformationButton.Click();
             AccountName.EnterText(ConfigurationManager.AppSettings["ClinicAccount"]);
             Country.WaitUntilTextToBePresentInElement(modifiedCountry);
             Country.SelectItem(ConfigurationManager.AppSettings["Country"]);
-            FirstName.EnterText(ConfigurationManager.AppSettings["Name"]);
             SaveChangesButton.Click();
             AccountNameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["ClinicAccount"]);
         }
+
+        public void EditAccountInformation()
+        {
+            NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
+            EditAccoutInformationButton.WaitUntilElementToBeClickable();
+            EditAccoutInformationButton.Click();
+            FirstName.EnterText(modifier + ConfigurationManager.AppSettings["Name"]);
+            SaveChangesButton.Click();
+            NameResult.WaitUntilTextToBePresentInElement(modifier + ConfigurationManager.AppSettings["Name"]);
+            EditAccoutInformationButton.Click();
+            FirstName.EnterText(ConfigurationManager.AppSettings["Name"]);
+            SaveChangesButton.Click();
+            NameResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["Name"]);
+        }
+        
         public void DeleteAccount()
         {
             EditAccoutInformationButton.WaitUntilElementToBeClickable();

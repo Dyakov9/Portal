@@ -14,8 +14,9 @@ namespace TestCases
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
-            Page.IntegrationsPage.GoToSettingsPage();
+            Page.NavigationPage.GoToSettingsPage();
             Page.SettingsPage.EditAccountInformation();
+            Page.SettingsPage.EditCompanyInformation();
             BrowserFactory.QuitBrowser();
         }
     }

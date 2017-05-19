@@ -6,16 +6,17 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-   public class VerifyThatImagesAreDisplayedTest
+    public class UploadDeleteTemplatesTest
     {
         [TestMethod]
-    public void VerifyThatImagesAreDisplayed()
+        public void UploadDeleteTemplates()
         {
             BrowserFactory.InitBrowser();
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
-            Page.IntegrationsPage.GoToCasePage();
-            Page.CasesPage.VerifyImagesAreDisplayed();
+            Page.NavigationPage.GoToTemplatesPage();
+            Page.TemplatesPage.UploadTemplate();
+            Page.TemplatesPage.DeleteTemplate();
             BrowserFactory.QuitBrowser();
         }
     }

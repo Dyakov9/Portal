@@ -10,20 +10,11 @@ namespace PageObjects
 {
     public class IntegrationsPage
     {
-        private IAlert Alert { get; set; }
-
+        
         [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div[3]/div/ul/li[2]/div[2]/div[4]/button")]
         [CacheLookup]
         private IWebElement IntegrateAccountsButton { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[1]/a")]
-        [CacheLookup]
-        private IWebElement CasesPageLink { get; set; }
-
-        [FindsBy(How = How.XPath, Using = "/html/body/div[2]/div/nav/section/ul/div/li[2]/a")]
-        [CacheLookup]
-        private IWebElement ConnectionsPageLink { get; set; }
-
+        
         [FindsBy(How = How.XPath, Using = "/html/body/div[5]/div/div[3]/div/input")]
         [CacheLookup]
         private IWebElement ValidationCodeField { get; set; }
@@ -56,47 +47,6 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement IntegrationPageToaster { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "a[class='profile ng-binding']")]
-        [CacheLookup]
-        private IWebElement ProfileMenu { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "a[ng-click='ctrl.logOff()']")]
-        [CacheLookup]                         
-        private IWebElement LogOutLink { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "a[href='#/settings/']")]
-        [CacheLookup]
-        private IWebElement SettingsPageLink { get; set; }
-
-        [FindsBy(How = How.ClassName, Using = "more")]
-        [CacheLookup]
-        private IWebElement MoreItem { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "a[href='#/userrole']")]
-        [CacheLookup]
-        private IWebElement UserRolePageLink { get; set; }
-
-        [FindsBy(How = How.CssSelector, Using = "a[href='#/admin']")]
-        [CacheLookup]
-        private IWebElement AdminPageLink { get; set; }
-
-        public void GoToCasePage()
-        {
-            CasesPageLink.Click();
-        }
-
-        public void GoToSettingsPage()
-        {
-            ProfileMenu.MoveToElement();
-            SettingsPageLink.Click();
-
-        }
-
-        public void GoToConnectionsPage()
-        {
-            ConnectionsPageLink.Click();
-        }
-
         public void IntegrateAccounts()
         {
             IntegrateAccountsButton.WaitUntilElementToBeClickable();
@@ -117,25 +67,5 @@ namespace PageObjects
             DisconnectAccountsButton.Click();
             IntegrationPageToaster.WaitUntilTextToBePresentInElement( "You have successfully disconnected your Invisalign integration");
                     }
-
-        public void LogOut()
-        {
-            ProfileMenu.MoveToElement();
-            LogOutLink.Click();
-            Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["LoginPageURL"]);
         }
-       
-        public void GoToUserRolePage()
-        {
-            MoreItem.MoveToElement();
-            UserRolePageLink.Click();
-        }
-
-        public void GoToAdminPage()
-        {
-            MoreItem.MoveToElement();
-            AdminPageLink.Click();
-        }
-
-    }
 }

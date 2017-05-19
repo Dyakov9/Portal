@@ -39,6 +39,11 @@ namespace UnitTestProject3.Extensions
             BrowserFactory.Wait.Until(ExpectedConditions.ElementIsVisible(locator));
         }
 
+        public static void WaitUntilElementWithTextIsInvisible(By locator, String text)
+        {
+            BrowserFactory.Wait.Until(ExpectedConditions.InvisibilityOfElementWithText(locator, text));
+        }
+
         public static void WaitUntilElementIsInvisible(By locator)
         {
             BrowserFactory.Wait.Until(ExpectedConditions.InvisibilityOfElementLocated(locator));
