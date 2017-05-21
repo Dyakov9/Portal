@@ -17,6 +17,11 @@ namespace TestCases
             Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.AddCommentWithImage();
             BrowserFactory.QuitBrowser();
+            BrowserFactory.InitBrowser();
+            BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
+            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["LabAccount"]);
+            Page.NavigationPage.GoToCasesPage();
+            Page.CasesPage.VerifyThatCommentIsAdded();
         }
     }
 }

@@ -14,6 +14,8 @@ namespace UnitTestProject3.PageObjects
 {
     public class CasesPage
     {
+        string date = DateTime.Now.ToString();
+
         [FindsBy(How = How.CssSelector, Using = "input[type=search]")]
         [CacheLookup]
         private IWebElement SearchField { get; set; }
@@ -30,15 +32,15 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement DetailsButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "textarea[ng-model='messageText']")]
+        [FindsBy(How = How.CssSelector, Using = "span[title='Comments']")]
         [CacheLookup]
         private IWebElement CommentTab { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/textarea")]
+        [FindsBy(How = How.CssSelector, Using = "textarea[ng-model='messageText']")]
         [CacheLookup]
         private IWebElement CommentField { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[3]/div[2]/div[2]/button")]
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.sendComment()']")]
         [CacheLookup]
         private IWebElement SendCommentButton { get; set; }
 
@@ -66,6 +68,14 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SearchByCasesStatesDropDown { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.approveCase(currentCase)']")]
+        [CacheLookup]
+        private IWebElement ApproveCaseButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "div[ng-hide='comment.fullTextAvailable']")]
+        [CacheLookup]
+        private IWebElement CommentResult { get; set; }
+
         public void Search()
         {
             SearchField.WaitUntilElementToBeClickable();
@@ -76,7 +86,7 @@ namespace UnitTestProject3.PageObjects
             DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
             CaseId.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["CaseId"]);
-            
+            //ApproveCaseButton.WaitUntilElementToBeClickable();
         }
        
         public void AddCommentWithImage()
@@ -84,13 +94,24 @@ namespace UnitTestProject3.PageObjects
            Search();
            CommentTab.WaitUntilElementToBeClickable();
            CommentTab.Click();
-           CommentField.EnterText(ConfigurationManager.AppSettings["Country"]);
+           CommentField.WaitUntilElementToBeClickable();
+           CommentField.EnterText(date);
            AddImageButton.SendKeys(ConfigurationManager.AppSettings["LogoFilePath"]);
            SendCommentButton.WaitUntilElementToBeClickable();
            SendCommentButton.Click();
            Toaster.WaitUntilTextToBePresentInElement("comment with image added");
 
         }
+
+        public void VerifyThatCommentIsAdded()
+        {
+            Search();
+            CommentTab.WaitUntilElementToBeClickable();
+            CommentTab.Click();
+            CommentResult.WaitUntilTextToBePresentInElement(date);
+
+        }
+
         public void UploadPdfFile(string path)
         {
             Search();

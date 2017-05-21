@@ -16,7 +16,7 @@ namespace TestCases
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.UploadPdfFile(ConfigurationManager.AppSettings["PdfFilePath"]);
-            BrowserFactory.QuitBrowser();
+            //BrowserFactory.QuitBrowser();
         }
     }
 }
