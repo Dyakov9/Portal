@@ -57,5 +57,10 @@ namespace PageObjects
         {
             get { return GetPage<TemplatesPage>(); }
         }
+
+        public static ResetPasswordPage ResetPasswordPagePage
+        {
+            get { return GetPage<ResetPasswordPage>(); }
+        }
     }
 }

@@ -14,23 +14,10 @@ namespace WrapperFactory
 {
     class BrowserFactory
     {
-        private static readonly IDictionary<string, IWebDriver> Drivers = new Dictionary<string, IWebDriver>();
         public static WebDriverWait Wait { get; set; }
         public static IWebDriver Driver { get; set; }
        
-        public static void InitBrowser()
-        {
-
-            var options = new ChromeOptions();
-            options.AddUserProfilePreference("credentials_enable_service", false);
-            options.AddUserProfilePreference("password_manager_enabled", false);
-            Driver = new ChromeDriver(options);
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(45));
-            
-            
-        }
-
-        public static void InitBrowser(string browserName)
+      public static void InitBrowser(string browserName)
         {
          
             switch (browserName)
@@ -38,21 +25,19 @@ namespace WrapperFactory
                 case "Firefox":
                    
                         Driver = new FirefoxDriver();
-                       break;
+                        break;
 
                 case "IE":
                    
                         Driver = new InternetExplorerDriver();
-//                        Drivers.Add("IE", Driver);
-                    
-                    break;
+                        break;
 
                 case "Chrome":
-                   
-                        Driver = new ChromeDriver();
-                       // Drivers.Add("Chrome", Driver);
-                   
-                    break;
+                   var options = new ChromeOptions();
+                   options.AddUserProfilePreference("credentials_enable_service", false);
+                   options.AddUserProfilePreference("password_manager_enabled", false);
+                   Driver = new ChromeDriver();
+                   break;
             }
             Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
         }

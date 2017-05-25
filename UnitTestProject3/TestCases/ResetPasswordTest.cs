@@ -8,18 +8,16 @@ using WrapperFactory;
 namespace TestCases
 {
     [TestClass]
-    public class AsAdminEditAccountInformationTest
+    public class ResetPasswordTest
     {
         [TestMethod]
-        public void AsAdminEditAccountInformation()
+        public void ResetPassword()
         {
             BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
-            Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["AdminAccount"]);
-            Page.NavigationPage.GoToAdminPage();
-            Page.AdminPage.GoToUserSettingsPage(ConfigurationManager.AppSettings["ClinicAccount"]);
-            Page.SettingsPage.EditAccountInformation();
+            Page.Login.GoToResetPasswordPage();
+            Page.ResetPasswordPagePage.ResetPassword();
             BrowserFactory.QuitBrowser();
-            }
+        }
     }
 }

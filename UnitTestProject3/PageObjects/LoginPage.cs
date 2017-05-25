@@ -30,6 +30,13 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SoftwareUser { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/resetpassword/']")]
+        [CacheLookup]
+        private IWebElement ResetPasswordLink { get; set; }
+
+
+
+
         public void LoginToAppliction (string accountName)
         {
             Email.WaitUntilElementToBeClickable();
@@ -42,6 +49,13 @@ namespace PageObjects
         {
             NewAccount.Click();
             SoftwareUser.Click();
+        }
+
+        public void GoToResetPasswordPage()
+        {
+            ResetPasswordLink.WaitUntilElementToBeClickable();
+            ResetPasswordLink.Click();
+            
         }
         }
 }
