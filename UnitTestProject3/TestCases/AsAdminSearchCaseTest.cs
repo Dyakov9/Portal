@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObjects;
 using System.Configuration;
+using UnitTestProject3.Extensions;
 using WrapperFactory;
 
 
@@ -12,7 +13,7 @@ namespace TestCases
         [TestMethod]
         public void AsAdminSearchCase()
         {
-            BrowserFactory.InitBrowser();
+            BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["AdminAccount"]);
             Page.NavigationPage.GoToAdminPage();

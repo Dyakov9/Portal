@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObjects;
 using System.Configuration;
+using UnitTestProject3.Extensions;
 using WrapperFactory;
 
 
@@ -12,13 +13,13 @@ namespace TestCases
         [TestMethod]
         public void AddAproveRemoveConnection()
         {
-            BrowserFactory.InitBrowser();
+            BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.NavigationPage.GoToConnectionsPage();
             Page.ConnectionsPage.SendConnectionRequest(ConfigurationManager.AppSettings["LabAccount"]);
             BrowserFactory.QuitBrowser();
-            BrowserFactory.InitBrowser();
+            BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["LabAccount"]);
             Page.NavigationPage.GoToConnectionsPage();

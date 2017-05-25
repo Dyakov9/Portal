@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using PageObjects;
@@ -91,6 +92,14 @@ namespace UnitTestProject3.Extensions
             SelectElement select = new SelectElement(element);
             select.SelectByText(text);
 
+        }
+
+        public static string GetRandomBrowserName()
+        {
+            List<string> names = new List<string>() { "Firefox", "IE", "Chrome" };
+            Random r = new Random();
+            string name = names[r.Next(names.Count)];
+            return name;
         }
     }
 }

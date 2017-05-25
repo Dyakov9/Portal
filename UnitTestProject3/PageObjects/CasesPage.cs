@@ -83,15 +83,17 @@ namespace UnitTestProject3.PageObjects
             SearchByCasesStatesDropDown.SelectItem("Designed");
             SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
+            Thread.Sleep(500);
             DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
             CaseId.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["CaseId"]);
-            //ApproveCaseButton.WaitUntilElementToBeClickable();
+            
         }
        
         public void AddCommentWithImage()
         {
-           Search();
+           //Search();
+           DetailsButton.WaitUntilElementToBeClickable();
            CommentTab.WaitUntilElementToBeClickable();
            CommentTab.Click();
            CommentField.WaitUntilElementToBeClickable();
@@ -103,18 +105,10 @@ namespace UnitTestProject3.PageObjects
 
         }
 
-        public void VerifyThatCommentIsAdded()
-        {
-            Search();
-            CommentTab.WaitUntilElementToBeClickable();
-            CommentTab.Click();
-            CommentResult.WaitUntilTextToBePresentInElement(date);
-
-        }
-
+    
         public void UploadPdfFile(string path)
         {
-            Search();
+            DetailsButton.WaitUntilElementToBeClickable();
             PdfTab.WaitUntilElementToBeClickable();
             PdfTab.Click();
             ChoosePdfFileButton.SendKeys(path);

@@ -1,22 +1,24 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PageObjects;
 using System.Configuration;
+using NUnit.Framework;
+using UnitTestProject3.Extensions;
 using WrapperFactory;
 
 namespace TestCases
 {
-    [TestClass]
-    public class SearchCaseAndUploadPdfFileTest
+   [TestClass]
+    public class UploadPdfFileTest
     {
         [TestMethod]
-        public void SearchCaseAndUploadPdfFile()
+        public void UploadPdfFile()
         {
-            BrowserFactory.InitBrowser();
+            BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.UploadPdfFile(ConfigurationManager.AppSettings["PdfFilePath"]);
-            //BrowserFactory.QuitBrowser();
+            BrowserFactory.QuitBrowser();
         }
     }
 }

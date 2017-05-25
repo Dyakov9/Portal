@@ -21,7 +21,7 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement SearchUsersButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div[class='list-item__title ng-binding']")]
+        [FindsBy(How = How.CssSelector, Using = "a[ng-click='setPointOFView(foundUser)']")]
         [CacheLookup]
         private IWebElement FoundUserResult { get; set; }
 
