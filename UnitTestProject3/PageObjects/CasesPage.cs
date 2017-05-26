@@ -72,9 +72,13 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement ApproveCaseButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "div[ng-hide='comment.fullTextAvailable']")]
+        [FindsBy(How = How.CssSelector, Using = "span[title='Order Updates']")]
         [CacheLookup]
-        private IWebElement CommentResult { get; set; }
+        private IWebElement OrderUpdatesTab { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "span[class='ng-binding']")]
+        [CacheLookup]
+        private IWebElement OrderUpdateResult { get; set; }
 
         public void Search()
         {
@@ -92,7 +96,6 @@ namespace UnitTestProject3.PageObjects
        
         public void AddCommentWithImage()
         {
-           //Search();
            DetailsButton.WaitUntilElementToBeClickable();
            CommentTab.WaitUntilElementToBeClickable();
            CommentTab.Click();
@@ -114,6 +117,14 @@ namespace UnitTestProject3.PageObjects
             ChoosePdfFileButton.SendKeys(path);
             UploadPdfFileButton.Click();
             Toaster.WaitUntilTextToBePresentInElement( "You have successfully uploaded the file!");
+        }
+
+        public void GetDeIdentifiedOrderUpdates()
+        {
+            Thread.Sleep(500);
+            OrderUpdatesTab.WaitUntilElementToBeClickable();
+            OrderUpdatesTab.Click();
+            OrderUpdateResult.WaitUntilTextToBePresentInElement("5885d5b0-9fce-404c-afc3-a77e009f232a");
         }
             }
 }
