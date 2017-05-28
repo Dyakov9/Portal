@@ -75,10 +75,11 @@ namespace UnitTestProject3.Extensions
             BrowserFactory.Wait.Until(ExpectedConditions.UrlToBe(text));
         }
 
+       
         public static void MoveToElement(this IWebElement element)
         {
-            Actions actions = new Actions(BrowserFactory.Driver);
-            actions.MoveToElement(element).Build().Perform();
+            builder = new Actions(BrowserFactory.Driver);
+            builder.MoveToElement(element).Build().Perform();
 
         }
 

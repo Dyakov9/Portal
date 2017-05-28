@@ -80,6 +80,12 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement OrderUpdateResult { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "label[for='practice']")]
+        [CacheLookup]
+        private IWebElement GetDeIdentifiedUpdatesToggle { get; set; }
+
+
+
         public void Search()
         {
             SearchField.WaitUntilElementToBeClickable();
@@ -124,7 +130,12 @@ namespace UnitTestProject3.PageObjects
             Thread.Sleep(500);
             OrderUpdatesTab.WaitUntilElementToBeClickable();
             OrderUpdatesTab.Click();
+            GetDeIdentifiedUpdatesToggle.WaitUntilElementToBeClickable();
+            GetDeIdentifiedUpdatesToggle.Click();
+            Thread.Sleep(500);
+            GetDeIdentifiedUpdatesToggle.Click();
             OrderUpdateResult.WaitUntilTextToBePresentInElement("5885d5b0-9fce-404c-afc3-a77e009f232a");
+            
         }
             }
 }
