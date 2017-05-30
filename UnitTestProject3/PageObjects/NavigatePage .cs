@@ -9,7 +9,7 @@ using UnitTestProject3.Extensions;
 
 namespace PageObjects
 {
-    public class NavigationPage
+    public class NavigatePage
     {
 
 
@@ -53,6 +53,23 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement TemplatesLink { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/accessOldCases']")]
+        [CacheLookup]
+        private IWebElement AccessOldCasesLink { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.approveCase(currentCase)']")]
+        [CacheLookup]
+        private IWebElement ApproveCaseButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.rejectCase(currentCase)']")]
+        [CacheLookup]
+        private IWebElement RejectCaseButton { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.deleteCase(currentCase)']")]
+        [CacheLookup]
+        private IWebElement DeleteCaseButton { get; set; }
+
+       
         public void GoToCasesPage()
         {
             CasesPageLink.Click();
@@ -94,6 +111,20 @@ namespace PageObjects
             OrderFormTab.MoveToElement();
             TemplatesLink.Click();
         }
-       
+
+        public void GoToAccessOldCasesPage()
+        {
+            MoreItem.MoveToElement();
+            AccessOldCasesLink.Click();
+        }
+
+        public void VerifyThatApproveRejectDeleteAreClickable()
+        {
+           ApproveCaseButton.WaitUntilElementToBeClickable();
+           RejectCaseButton.WaitUntilElementToBeClickable();
+           DeleteCaseButton.WaitUntilElementToBeClickable();
+        }
+
+     
              }
 }

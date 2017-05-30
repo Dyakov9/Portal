@@ -48,9 +48,9 @@ namespace PageObjects
             get { return GetPage<AdminPage>(); }
         }
 
-        public static NavigationPage NavigationPage
+        public static NavigatePage NavigationPage
         {
-            get { return GetPage<NavigationPage>(); }
+            get { return GetPage<NavigatePage>(); }
         }
         
         public static TemplatesPage TemplatesPage
@@ -58,9 +58,14 @@ namespace PageObjects
             get { return GetPage<TemplatesPage>(); }
         }
 
-        public static ResetPasswordPage ResetPasswordPagePage
+        public static ResetPasswordPage ResetPasswordPage
         {
             get { return GetPage<ResetPasswordPage>(); }
+        }
+
+        public static AccessOldCasesPage AxAccessOldCasesPage
+        {
+            get { return GetPage<AccessOldCasesPage>(); }
         }
     }
 }

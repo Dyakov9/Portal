@@ -12,10 +12,7 @@ namespace PageObjects
 {
     public class TemplatesPage
     {
-        private IAlert Alert { get; set; }
-
-        private string ActualAlertText { get; set; }
-
+     
         [FindsBy(How = How.Id, Using = "templateFileInput")]
         [CacheLookup]                            
         private IWebElement TemplateFileInputButton { get; set; }
@@ -44,10 +41,7 @@ namespace PageObjects
         {
             DeleteButton.WaitUntilElementToBeClickable();
             DeleteButton.Click();
-            Alert = BrowserFactory.InitAlert();
-            ActualAlertText = Alert.Text;
-            Assert.AreEqual("This will permanently delete the template file. This action cannot be undone. Proceed?", ActualAlertText);
-            Alert.Accept();
+            Extensions.AcceptAlertWithMessage("This will permanently delete the template file. This action cannot be undone. Proceed?");
             Extensions.WaitUntilElementWithTextIsInvisible(By.CssSelector("span[class='ng-binding'"), "Nastia Order Template");
         }
     }

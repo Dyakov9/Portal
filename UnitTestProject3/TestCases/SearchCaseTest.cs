@@ -19,6 +19,7 @@ namespace TestCases
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
             Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.Search();
+            Page.NavigationPage.VerifyThatApproveRejectDeleteAreClickable();
             BrowserFactory.QuitBrowser();
             }
     }

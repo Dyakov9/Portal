@@ -45,6 +45,7 @@ namespace PageObjects
             Login.Submit();
             Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["IntegrationPageURL"]);
                     }
+
         public void GoToCreateAccountUserPage()
         {
             NewAccount.Click();

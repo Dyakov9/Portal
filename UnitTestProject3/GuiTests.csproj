@@ -73,7 +73,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Extensions\Extensions.cs" />
-    <Compile Include="PageObjects\NavigationPage .cs" />
+    <Compile Include="PageObjects\AccessOldCasesPage.cs" />
+    <Compile Include="PageObjects\NavigatePage .cs" />
     <Compile Include="PageObjects\CasesPage.cs" />
     <Compile Include="PageObjects\ConnectionsPage.cs" />
     <Compile Include="PageObjects\AdminPage.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="PageObjects\TemplatesPage.cs" />
     <Compile Include="PageObjects\SettingsPage.cs" />
     <Compile Include="TestCases\AsAdminGetDeIdentifiedOrderUpdatesTest.cs" />
+    <Compile Include="TestCases\MigrateOldCasesTest.cs" />
     <Compile Include="TestCases\ResetPasswordTest.cs" />
     <Compile Include="TestCases\SearchCaseTest.cs" />
     <Compile Include="TestCases\AsAdminSearchCaseTest.cs" />

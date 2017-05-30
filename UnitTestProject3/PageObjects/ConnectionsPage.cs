@@ -9,10 +9,7 @@ namespace UnitTestProject3.PageObjects
 {
    public class ConnectionsPage
    {
-        private IAlert Alert { get; set; }
-
-        private string ActualAlertText { get; set; }
-
+        
         [FindsBy(How = How.CssSelector, Using = "button[class=button][ng-click='ctrl.openModal()']")]
         [CacheLookup]
         private IWebElement AddConnectionButton { get; set; }
@@ -58,12 +55,9 @@ namespace UnitTestProject3.PageObjects
             ColloboratorsName.Click();
             ConnectButton.Click();
             Extensions.Extensions.WaitUntilAlertIsPresent();
-            Alert = BrowserFactory.InitAlert();
-            ActualAlertText = Alert.Text;
-            Assert.AreEqual("connection request was sent", ActualAlertText);
-            Alert.Accept();
-            
+            Extensions.Extensions.AcceptAlertWithMessage("connection request was sent");
         }
+
         public void ApproveConnectionRequestAndRemoveConnection()
         {
             var connectionStateCssSelector = "span[class='ng-binding active']";
@@ -72,10 +66,7 @@ namespace UnitTestProject3.PageObjects
             ConnectionStateText.WaitUntilElementToBeClickable();
             RemoveConnectionButton.WaitUntilElementToBeClickable();
             RemoveConnectionButton.Click();
-            Alert = BrowserFactory.InitAlert();
-            ActualAlertText = Alert.Text;
-            Assert.AreEqual("This action will remove the connection and cannot be undone. Would you like to proceed?", ActualAlertText);
-            Alert.Accept();
+            Extensions.Extensions.AcceptAlertWithMessage("This action will remove the connection and cannot be undone. Would you like to proceed?");
             Extensions.Extensions.WaitUntilElementIsInvisible(By.CssSelector(connectionStateCssSelector));
         }
 

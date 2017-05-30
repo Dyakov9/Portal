@@ -52,7 +52,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement Toaster { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/ul/li[4]/span")]
+        [FindsBy(How = How.ClassName, Using = "pdf")]
         [CacheLookup]
         private IWebElement PdfTab { get; set; }
 
@@ -60,7 +60,7 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement ChoosePdfFileButton { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "button[class='uploadFileButton']")]
+        [FindsBy(How = How.ClassName, Using = "uploadFileButton")]
         [CacheLookup]
         private IWebElement UploadPdfFileButton { get; set; }
 
@@ -68,15 +68,11 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement SearchByCasesStatesDropDown { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "button[ng-click='ctrl.approveCase(currentCase)']")]
-        [CacheLookup]
-        private IWebElement ApproveCaseButton { get; set; }
-
         [FindsBy(How = How.CssSelector, Using = "span[title='Order Updates']")]
         [CacheLookup]
         private IWebElement OrderUpdatesTab { get; set; }
 
-        [FindsBy(How = How.CssSelector, Using = "span[class='ng-binding']")]
+        [FindsBy(How = How.XPath, Using = "/html/body/div[3]/div/div/div[2]/div[1]/div[2]/div[4]/ul/li/div/div[1]/span")]
         [CacheLookup]
         private IWebElement OrderUpdateResult { get; set; }
 

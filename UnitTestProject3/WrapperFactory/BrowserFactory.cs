@@ -39,7 +39,7 @@ namespace WrapperFactory
                    Driver = new ChromeDriver();
                    break;
             }
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(30));
+            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(15));
         }
 
         public static void LoadApplication(string url)

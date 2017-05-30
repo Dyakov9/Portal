@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using WrapperFactory;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Interactions;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium.Support.PageObjects;
 
 
 namespace UnitTestProject3.Extensions
@@ -12,6 +13,8 @@ namespace UnitTestProject3.Extensions
     public static class Extensions
 
     {
+        
+
         public static Actions builder { get; set; }
 
         public static void EnterText(this IWebElement element, string text)
@@ -96,6 +99,14 @@ namespace UnitTestProject3.Extensions
             Random r = new Random();
             string name = names[r.Next(names.Count)];
             return name;
+        }
+
+        public static void AcceptAlertWithMessage(String message)
+        {
+            var alert = BrowserFactory.InitAlert();
+            var actualAlertText = alert.Text;
+            Assert.AreEqual(message, actualAlertText);
+            alert.Accept();
         }
     }
 }
