@@ -59,7 +59,7 @@ namespace PageObjects
             DoctorNameField.EnterText("ntest");
             DoctorPasswordField.EnterText("align");
             AlignPageLogin.Click();
-            DisconnectAccountsButton.WaitUntilTextToBePresentInElement("Disconnect accounts");
+            DisconnectAccountsButton.WaitUntilTextToBePresentInElement("Disable integration");
                     }
         public void DisconnectAccounts()
         {

@@ -69,6 +69,10 @@ namespace PageObjects
         [CacheLookup]
         private IWebElement DeleteCaseButton { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "a[href='#/integrations/']")]
+        [CacheLookup]
+        private IWebElement IntegrationsPageLink { get; set; }
+
        
         public void GoToCasesPage()
         {
@@ -123,6 +127,11 @@ namespace PageObjects
            ApproveCaseButton.WaitUntilElementToBeClickable();
            RejectCaseButton.WaitUntilElementToBeClickable();
            DeleteCaseButton.WaitUntilElementToBeClickable();
+        }
+
+        public void GoToIntegrationsPage()
+        {
+           IntegrationsPageLink.Click();
         }
 
      

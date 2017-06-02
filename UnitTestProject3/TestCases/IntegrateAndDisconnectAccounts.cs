@@ -16,11 +16,13 @@ namespace TestCases
             BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
+            Page.NavigationPage.GoToIntegrationsPage();
             Page.IntegrationsPage.IntegrateAccounts();
             BrowserFactory.QuitBrowser();
             BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
+            Page.NavigationPage.GoToIntegrationsPage();
             Page.IntegrationsPage.DisconnectAccounts();
             BrowserFactory.QuitBrowser();
         }

@@ -80,6 +80,13 @@ namespace UnitTestProject3.PageObjects
         [CacheLookup]
         private IWebElement GetDeIdentifiedUpdatesToggle { get; set; }
 
+        [FindsBy(How = How.CssSelector, Using = "span[class='printable-order-form']")]
+        [CacheLookup]
+        private IWebElement TriosPrintableOrderFormTab { get; set; }
+
+        [FindsBy(How = How.CssSelector, Using = "embed[id='plugin']")]
+        [CacheLookup]
+        private IWebElement TriosPrintableOrderForm { get; set; }
 
 
         public void Search()
@@ -89,7 +96,7 @@ namespace UnitTestProject3.PageObjects
             SearchByCasesStatesDropDown.SelectItem("Designed");
             SearchButton.WaitUntilElementToBeClickable();
             SearchButton.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             DetailsButton.WaitUntilElementToBeClickable();
             DetailsButton.Click();
             CaseId.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["CaseId"]);
@@ -130,8 +137,9 @@ namespace UnitTestProject3.PageObjects
             GetDeIdentifiedUpdatesToggle.Click();
             Thread.Sleep(500);
             GetDeIdentifiedUpdatesToggle.Click();
-            OrderUpdateResult.WaitUntilTextToBePresentInElement("5885d5b0-9fce-404c-afc3-a77e009f232a");
+            OrderUpdateResult.WaitUntilTextToBePresentInElement(ConfigurationManager.AppSettings["UpdateId"]);
             
         }
-            }
+
+      }
 }

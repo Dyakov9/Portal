@@ -16,7 +16,6 @@ namespace TestCases
             BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["AdminAccount"]);
-            Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.Search();
             Page.CasesPage.GetDeIdentifiedOrderUpdates();
             BrowserFactory.QuitBrowser();

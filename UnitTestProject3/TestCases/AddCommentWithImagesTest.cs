@@ -15,7 +15,6 @@ namespace TestCases
             BrowserFactory.InitBrowser(Extensions.GetRandomBrowserName());
             BrowserFactory.LoadApplication(ConfigurationManager.AppSettings["URL"]);
             Page.Login.LoginToAppliction(ConfigurationManager.AppSettings["ClinicAccount"]);
-            Page.NavigationPage.GoToCasesPage();
             Page.CasesPage.AddCommentWithImage();
             BrowserFactory.QuitBrowser();
             
