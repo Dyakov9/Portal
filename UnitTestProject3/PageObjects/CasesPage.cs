@@ -141,5 +141,9 @@ namespace UnitTestProject3.PageObjects
             
         }
 
+        public void WaitUntilSearchButtonIsClickable()
+        {
+            SearchButton.WaitUntilElementToBeClickable();
+        }
       }
 }

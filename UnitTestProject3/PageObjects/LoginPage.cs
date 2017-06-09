@@ -43,7 +43,7 @@ namespace PageObjects
             Email.EnterText(accountName);
             Password.EnterText(accountName);
             Login.Submit();
-            Extensions.WaitUntilUrlToBe(ConfigurationManager.AppSettings["CasesPageURL"]);
+            Page.CasesPage.WaitUntilSearchButtonIsClickable();
                     }
 
         public void GoToCreateAccountUserPage()
